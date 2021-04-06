@@ -19,12 +19,12 @@ ipython_config.py
 ### PyCharm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
-
-*/.__pycache__/*
+.__pycache__/*
+__pycache__/*
 
 # User-specific stuff
 .idea/**/workspace.xml
-.idea/**/tasks.xml
+.idea/**/tasks.xmls
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf

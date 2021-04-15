@@ -10,6 +10,7 @@ class WaterDistributionNetwork(epynet.Network):
         super().__init__(inputfile=inpfile)
         self.df_junctions_report = None
         self.df_pumps_report = None
+        self.df_pumps_report = None
         self.times = []
 
     def set_time_params(self, duration=None, hydraulic_step=None, pattern_step=None, report_step=None, start_time=None):
@@ -70,12 +71,12 @@ class WaterDistributionNetwork(epynet.Network):
 
         self.ep.ENcloseH()
         self.create_junctions_report()
+        self.create_pumps_report()
 
     def create_junctions_report(self):
         """Build a dataframe of the report of junctions properties"""
-        self.df_junctions_report = None
         iterables = [self.junctions.uid, ['head', 'pressure', 'demand']]
-        cols_index = pd.MultiIndex.from_product(iterables, names=["id", "properties"])
+        cols_index = pd.MultiIndex.from_product(iterables=iterables, names=["id", "properties"])
 
         times = [datetime.timedelta(seconds=time) for time in self.times]
         self.df_junctions_report = pd.DataFrame(0, index=times, columns=cols_index)
@@ -83,6 +84,18 @@ class WaterDistributionNetwork(epynet.Network):
         for i, j in zip(self.df_junctions_report.columns.get_level_values(0),
                         self.df_junctions_report.columns.get_level_values(1)):
             self.df_junctions_report[i, j] = self.junctions.results[i][j]
+
+    def create_pumps_report(self):
+        """Build a dataframe of the report of junctions properties"""
+        iterables = [self.pumps.uid, ['flow', 'energy']]
+        cols_index = pd.MultiIndex.from_product(iterables=iterables, names=["id", "properties"])
+
+        times = [datetime.timedelta(seconds=time) for time in self.times]
+        self.df_pumps_report = pd.DataFrame(0, index=times, columns=cols_index)
+
+        for i, j in zip(self.df_pumps_report.columns.get_level_values(0),
+                        self.df_pumps_report.columns.get_level_values(1)):
+            self.df_pumps_report[i, j] = self.pumps.results[i][j]
 
 
 if __name__ == '__main__':
@@ -92,7 +105,7 @@ if __name__ == '__main__':
     net.run()
 
     print(net.df_junctions_report)
-    print(net.junctions.results['22']['demand'])
+    #print(net.junctions.results['22']['demand'])
 
 
 

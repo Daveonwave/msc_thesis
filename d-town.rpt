@@ -1,0 +1,1258 @@
+  Page 1                                    Tue Apr 20 12:29:59 2021
+
+  ******************************************************************
+  *                           E P A N E T                          *
+  *                   Hydraulic and Water Quality                  *
+  *                   Analysis for Pipe Networks                   *
+  *                         Version 2.2                            *
+  ******************************************************************
+  
+  Analysis begun Tue Apr 20 12:29:59 2021
+
+  WARNING: Pump PU1 open but exceeds maximum flow at 0:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 0:00:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 0:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 0:05:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 0:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 0:10:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 0:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 0:15:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 0:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 0:20:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 0:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 0:25:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 0:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 0:30:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 0:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 0:35:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 0:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 0:40:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 0:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 0:45:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 0:48:07 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 0:48:07 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 0:53:07 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 0:53:07 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 0:58:07 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 0:58:07 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 1:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 1:00:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 1:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 1:05:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 1:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 1:10:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 1:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 1:15:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 1:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 1:20:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 1:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 1:25:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 1:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 1:30:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 1:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 1:35:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 1:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 1:40:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 1:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 1:45:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 1:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 1:50:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 1:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 1:55:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:00:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:05:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:10:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:15:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:20:00 hrs.
+   
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:25:00 hrs.
+   
+  WARNING: Negative pressures at 2:27:16 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:27:16 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:27:16 hrs.
+   
+  WARNING: Negative pressures at 2:32:16 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:32:16 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:32:16 hrs.
+   
+  WARNING: Negative pressures at 2:37:16 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:37:16 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:37:16 hrs.
+   
+  WARNING: Negative pressures at 2:39:32 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:39:32 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:39:32 hrs.
+   
+  WARNING: Negative pressures at 2:44:32 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:44:32 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:44:32 hrs.
+   
+  WARNING: Negative pressures at 2:49:32 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:49:32 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:49:32 hrs.
+   
+  WARNING: Negative pressures at 2:54:32 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:54:32 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:54:32 hrs.
+   
+  WARNING: Negative pressures at 2:59:32 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 2:59:32 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 2:59:32 hrs.
+   
+  WARNING: Negative pressures at 3:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 3:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 3:00:00 hrs.
+   
+  WARNING: Negative pressures at 3:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 3:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 3:05:00 hrs.
+   
+  WARNING: Negative pressures at 3:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 3:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 3:10:00 hrs.
+   
+  WARNING: Negative pressures at 3:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 3:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 3:15:00 hrs.
+   
+  WARNING: Negative pressures at 3:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 3:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 3:20:00 hrs.
+   
+  WARNING: Negative pressures at 3:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 3:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 3:25:00 hrs.
+   
+  WARNING: Negative pressures at 3:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 3:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 3:30:00 hrs.
+   
+  WARNING: Negative pressures at 3:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 3:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 3:35:00 hrs.
+   
+  WARNING: Negative pressures at 3:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 3:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 3:40:00 hrs.
+   
+  WARNING: Negative pressures at 3:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 3:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 3:45:00 hrs.
+   
+  WARNING: Negative pressures at 3:48:48 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 3:48:48 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 3:48:48 hrs.
+   
+  WARNING: Negative pressures at 3:52:48 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 3:52:48 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 3:52:48 hrs.
+   
+  WARNING: Negative pressures at 3:57:48 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 3:57:48 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 3:57:48 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 3:57:48 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 3:57:48 hrs.
+   
+  WARNING: Negative pressures at 4:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 4:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 4:00:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 4:00:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 4:00:00 hrs.
+   
+  WARNING: Negative pressures at 4:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 4:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 4:05:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 4:05:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 4:05:00 hrs.
+   
+  WARNING: Negative pressures at 4:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 4:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 4:10:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 4:10:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 4:10:00 hrs.
+   
+  WARNING: Negative pressures at 4:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 4:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 4:15:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 4:15:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 4:15:00 hrs.
+   
+  WARNING: Negative pressures at 4:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 4:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 4:20:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 4:20:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 4:20:00 hrs.
+   
+  WARNING: Negative pressures at 4:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 4:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 4:25:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 4:25:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 4:25:00 hrs.
+   
+  WARNING: Negative pressures at 4:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 4:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 4:30:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 4:30:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 4:30:00 hrs.
+   
+  WARNING: Negative pressures at 4:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 4:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 4:35:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 4:35:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 4:35:00 hrs.
+   
+  WARNING: Negative pressures at 4:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 4:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 4:40:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 4:40:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 4:40:00 hrs.
+   
+  WARNING: Negative pressures at 4:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 4:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 4:45:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 4:45:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 4:45:00 hrs.
+   
+  WARNING: Negative pressures at 4:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 4:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 4:50:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 4:50:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 4:50:00 hrs.
+   
+  WARNING: Negative pressures at 4:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 4:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 4:55:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 4:55:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 4:55:00 hrs.
+   
+  WARNING: Negative pressures at 5:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 5:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 5:00:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 5:00:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 5:00:00 hrs.
+   
+  WARNING: Negative pressures at 5:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 5:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 5:05:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 5:05:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 5:05:00 hrs.
+   
+  WARNING: Negative pressures at 5:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 5:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 5:10:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 5:10:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 5:10:00 hrs.
+   
+  WARNING: Negative pressures at 5:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 5:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 5:15:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 5:15:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 5:15:00 hrs.
+   
+  WARNING: Negative pressures at 5:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 5:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 5:20:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 5:20:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 5:20:00 hrs.
+   
+  WARNING: Negative pressures at 5:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 5:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 5:25:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 5:25:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 5:25:00 hrs.
+   
+  WARNING: Negative pressures at 5:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 5:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 5:30:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 5:30:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 5:30:00 hrs.
+   
+  WARNING: Negative pressures at 5:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 5:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 5:35:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 5:35:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 5:35:00 hrs.
+   
+  WARNING: Negative pressures at 5:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 5:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 5:40:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 5:40:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 5:40:00 hrs.
+   
+  WARNING: Negative pressures at 5:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 5:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 5:45:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 5:45:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 5:45:00 hrs.
+   
+  WARNING: Negative pressures at 5:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 5:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 5:50:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 5:50:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 5:50:00 hrs.
+   
+  WARNING: Negative pressures at 5:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 5:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 5:55:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 5:55:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 5:55:00 hrs.
+   
+  WARNING: Negative pressures at 6:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 6:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 6:00:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 6:00:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 6:00:00 hrs.
+   
+  WARNING: Negative pressures at 6:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 6:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 6:05:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 6:05:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 6:05:00 hrs.
+   
+  WARNING: Negative pressures at 6:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 6:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 6:10:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 6:10:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 6:10:00 hrs.
+   
+  WARNING: Negative pressures at 6:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 6:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 6:15:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 6:15:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 6:15:00 hrs.
+   
+  WARNING: Negative pressures at 6:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 6:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 6:20:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 6:20:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 6:20:00 hrs.
+   
+  WARNING: Negative pressures at 6:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 6:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 6:25:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 6:25:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 6:25:00 hrs.
+   
+  WARNING: Negative pressures at 6:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 6:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 6:30:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 6:30:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 6:30:00 hrs.
+   
+  WARNING: Negative pressures at 6:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 6:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 6:35:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 6:35:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 6:35:00 hrs.
+   
+  WARNING: Negative pressures at 6:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 6:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 6:40:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 6:40:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 6:40:00 hrs.
+   
+  WARNING: Negative pressures at 6:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 6:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 6:45:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 6:45:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 6:45:00 hrs.
+   
+  WARNING: Negative pressures at 6:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 6:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 6:50:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 6:50:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 6:50:00 hrs.
+   
+  WARNING: Negative pressures at 6:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 6:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 6:55:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 6:55:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 6:55:00 hrs.
+   
+  WARNING: Negative pressures at 7:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:00:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 7:00:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 7:00:00 hrs.
+   
+  WARNING: Negative pressures at 7:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:05:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 7:05:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 7:05:00 hrs.
+   
+  WARNING: Negative pressures at 7:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:10:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 7:10:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 7:10:00 hrs.
+   
+  WARNING: Negative pressures at 7:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:15:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 7:15:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 7:15:00 hrs.
+   
+  WARNING: Negative pressures at 7:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:20:00 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 7:20:00 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 7:20:00 hrs.
+   
+  WARNING: Negative pressures at 7:21:34 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:21:34 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:21:34 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 7:21:34 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 7:21:34 hrs.
+   
+  WARNING: Negative pressures at 7:26:34 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:26:34 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:26:34 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 7:26:34 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 7:26:34 hrs.
+   
+  WARNING: Negative pressures at 7:31:34 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:31:34 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:31:34 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 7:31:34 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 7:31:34 hrs.
+   
+  WARNING: Negative pressures at 7:36:34 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:36:34 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:36:34 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 7:36:34 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 7:36:34 hrs.
+   
+  WARNING: Negative pressures at 7:41:34 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:41:34 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:41:34 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 7:41:34 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 7:41:34 hrs.
+   
+  WARNING: Negative pressures at 7:46:34 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:46:34 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:46:34 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 7:46:34 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 7:46:34 hrs.
+   
+  WARNING: Negative pressures at 7:51:34 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:51:34 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:51:34 hrs.
+  WARNING: Pump PU4 closed because cannot deliver head at 7:51:34 hrs.
+  WARNING: Pump PU5 closed because cannot deliver head at 7:51:34 hrs.
+   
+  WARNING: Negative pressures at 7:52:02 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:52:02 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:52:02 hrs.
+   
+  WARNING: Negative pressures at 7:57:02 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 7:57:02 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 7:57:02 hrs.
+   
+  WARNING: Negative pressures at 8:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 8:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 8:00:00 hrs.
+   
+  WARNING: Negative pressures at 8:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 8:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 8:05:00 hrs.
+   
+  WARNING: Negative pressures at 8:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 8:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 8:10:00 hrs.
+   
+  WARNING: Negative pressures at 8:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 8:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 8:15:00 hrs.
+   
+  WARNING: Negative pressures at 8:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 8:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 8:20:00 hrs.
+   
+  WARNING: Negative pressures at 8:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 8:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 8:25:00 hrs.
+   
+  WARNING: Negative pressures at 8:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 8:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 8:30:00 hrs.
+   
+  WARNING: Negative pressures at 8:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 8:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 8:35:00 hrs.
+   
+  WARNING: Negative pressures at 8:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 8:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 8:40:00 hrs.
+   
+  WARNING: Negative pressures at 8:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 8:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 8:45:00 hrs.
+   
+  WARNING: Negative pressures at 8:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 8:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 8:50:00 hrs.
+   
+  WARNING: Negative pressures at 8:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 8:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 8:55:00 hrs.
+   
+  WARNING: Negative pressures at 9:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 9:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 9:00:00 hrs.
+   
+  WARNING: Negative pressures at 9:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 9:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 9:05:00 hrs.
+   
+  WARNING: Negative pressures at 9:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 9:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 9:10:00 hrs.
+   
+  WARNING: Negative pressures at 9:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 9:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 9:15:00 hrs.
+   
+  WARNING: Negative pressures at 9:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 9:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 9:20:00 hrs.
+   
+  WARNING: Negative pressures at 9:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 9:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 9:25:00 hrs.
+   
+  WARNING: Negative pressures at 9:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 9:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 9:30:00 hrs.
+   
+  WARNING: Negative pressures at 9:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 9:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 9:35:00 hrs.
+   
+  WARNING: Negative pressures at 9:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 9:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 9:40:00 hrs.
+   
+  WARNING: Negative pressures at 9:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 9:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 9:45:00 hrs.
+   
+  WARNING: Negative pressures at 9:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 9:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 9:50:00 hrs.
+   
+  WARNING: Negative pressures at 9:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 9:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 9:55:00 hrs.
+   
+  WARNING: Negative pressures at 10:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 10:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 10:00:00 hrs.
+   
+  WARNING: Negative pressures at 10:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 10:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 10:05:00 hrs.
+   
+  WARNING: Negative pressures at 10:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 10:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 10:10:00 hrs.
+   
+  WARNING: Negative pressures at 10:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 10:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 10:15:00 hrs.
+   
+  WARNING: Negative pressures at 10:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 10:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 10:20:00 hrs.
+   
+  WARNING: Negative pressures at 10:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 10:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 10:25:00 hrs.
+   
+  WARNING: Negative pressures at 10:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 10:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 10:30:00 hrs.
+   
+  WARNING: Negative pressures at 10:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 10:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 10:35:00 hrs.
+   
+  WARNING: Negative pressures at 10:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 10:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 10:40:00 hrs.
+   
+  WARNING: Negative pressures at 10:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 10:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 10:45:00 hrs.
+   
+  WARNING: Negative pressures at 10:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 10:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 10:50:00 hrs.
+   
+  WARNING: Negative pressures at 10:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 10:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 10:55:00 hrs.
+   
+  WARNING: Negative pressures at 11:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 11:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 11:00:00 hrs.
+   
+  WARNING: Negative pressures at 11:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 11:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 11:05:00 hrs.
+   
+  WARNING: Negative pressures at 11:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 11:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 11:10:00 hrs.
+   
+  WARNING: Negative pressures at 11:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 11:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 11:15:00 hrs.
+   
+  WARNING: Negative pressures at 11:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 11:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 11:20:00 hrs.
+   
+  WARNING: Negative pressures at 11:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 11:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 11:25:00 hrs.
+   
+  WARNING: Negative pressures at 11:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 11:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 11:30:00 hrs.
+   
+  WARNING: Negative pressures at 11:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 11:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 11:35:00 hrs.
+   
+  WARNING: Negative pressures at 11:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 11:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 11:40:00 hrs.
+   
+  WARNING: Negative pressures at 11:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 11:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 11:45:00 hrs.
+   
+  WARNING: Negative pressures at 11:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 11:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 11:50:00 hrs.
+   
+  WARNING: Negative pressures at 11:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 11:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 11:55:00 hrs.
+   
+  WARNING: Negative pressures at 12:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 12:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 12:00:00 hrs.
+   
+  WARNING: Negative pressures at 12:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 12:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 12:05:00 hrs.
+   
+  WARNING: Negative pressures at 12:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 12:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 12:10:00 hrs.
+   
+  WARNING: Negative pressures at 12:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 12:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 12:15:00 hrs.
+   
+  WARNING: Negative pressures at 12:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 12:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 12:20:00 hrs.
+   
+  WARNING: Negative pressures at 12:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 12:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 12:25:00 hrs.
+   
+  WARNING: Negative pressures at 12:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 12:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 12:30:00 hrs.
+   
+  WARNING: Negative pressures at 12:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 12:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 12:35:00 hrs.
+   
+  WARNING: Negative pressures at 12:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 12:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 12:40:00 hrs.
+   
+  WARNING: Negative pressures at 12:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 12:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 12:45:00 hrs.
+   
+  WARNING: Negative pressures at 12:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 12:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 12:50:00 hrs.
+   
+  WARNING: Negative pressures at 12:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 12:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 12:55:00 hrs.
+   
+  WARNING: Negative pressures at 13:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 13:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 13:00:00 hrs.
+   
+  WARNING: Negative pressures at 13:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 13:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 13:05:00 hrs.
+   
+  WARNING: Negative pressures at 13:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 13:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 13:10:00 hrs.
+   
+  WARNING: Negative pressures at 13:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 13:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 13:15:00 hrs.
+   
+  WARNING: Negative pressures at 13:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 13:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 13:20:00 hrs.
+   
+  WARNING: Negative pressures at 13:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 13:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 13:25:00 hrs.
+   
+  WARNING: Negative pressures at 13:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 13:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 13:30:00 hrs.
+   
+  WARNING: Negative pressures at 13:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 13:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 13:35:00 hrs.
+   
+  WARNING: Negative pressures at 13:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 13:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 13:40:00 hrs.
+   
+  WARNING: Negative pressures at 13:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 13:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 13:45:00 hrs.
+   
+  WARNING: Negative pressures at 13:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 13:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 13:50:00 hrs.
+   
+  WARNING: Negative pressures at 13:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 13:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 13:55:00 hrs.
+   
+  WARNING: Negative pressures at 14:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 14:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 14:00:00 hrs.
+   
+  WARNING: Negative pressures at 14:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 14:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 14:05:00 hrs.
+   
+  WARNING: Negative pressures at 14:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 14:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 14:10:00 hrs.
+   
+  WARNING: Negative pressures at 14:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 14:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 14:15:00 hrs.
+   
+  WARNING: Negative pressures at 14:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 14:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 14:20:00 hrs.
+   
+  WARNING: Negative pressures at 14:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 14:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 14:25:00 hrs.
+   
+  WARNING: Negative pressures at 14:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 14:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 14:30:00 hrs.
+   
+  WARNING: Negative pressures at 14:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 14:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 14:35:00 hrs.
+   
+  WARNING: Negative pressures at 14:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 14:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 14:40:00 hrs.
+   
+  WARNING: Negative pressures at 14:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 14:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 14:45:00 hrs.
+   
+  WARNING: Negative pressures at 14:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 14:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 14:50:00 hrs.
+   
+  WARNING: Negative pressures at 14:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 14:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 14:55:00 hrs.
+   
+  WARNING: Negative pressures at 15:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 15:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 15:00:00 hrs.
+   
+  WARNING: Negative pressures at 15:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 15:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 15:05:00 hrs.
+   
+  WARNING: Negative pressures at 15:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 15:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 15:10:00 hrs.
+   
+  WARNING: Negative pressures at 15:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 15:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 15:15:00 hrs.
+   
+  WARNING: Negative pressures at 15:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 15:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 15:20:00 hrs.
+   
+  WARNING: Negative pressures at 15:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 15:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 15:25:00 hrs.
+   
+  WARNING: Negative pressures at 15:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 15:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 15:30:00 hrs.
+   
+  WARNING: Negative pressures at 15:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 15:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 15:35:00 hrs.
+   
+  WARNING: Negative pressures at 15:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 15:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 15:40:00 hrs.
+   
+  WARNING: Negative pressures at 15:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 15:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 15:45:00 hrs.
+   
+  WARNING: Negative pressures at 15:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 15:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 15:50:00 hrs.
+   
+  WARNING: Negative pressures at 15:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 15:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 15:55:00 hrs.
+   
+  WARNING: Negative pressures at 16:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 16:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 16:00:00 hrs.
+   
+  WARNING: Negative pressures at 16:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 16:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 16:05:00 hrs.
+   
+  WARNING: Negative pressures at 16:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 16:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 16:10:00 hrs.
+   
+  WARNING: Negative pressures at 16:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 16:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 16:15:00 hrs.
+   
+  WARNING: Negative pressures at 16:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 16:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 16:20:00 hrs.
+   
+  WARNING: Negative pressures at 16:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 16:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 16:25:00 hrs.
+   
+  WARNING: Negative pressures at 16:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 16:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 16:30:00 hrs.
+   
+  WARNING: Negative pressures at 16:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 16:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 16:35:00 hrs.
+   
+  WARNING: Negative pressures at 16:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 16:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 16:40:00 hrs.
+   
+  WARNING: Negative pressures at 16:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 16:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 16:45:00 hrs.
+   
+  WARNING: Negative pressures at 16:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 16:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 16:50:00 hrs.
+   
+  WARNING: Negative pressures at 16:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 16:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 16:55:00 hrs.
+   
+  WARNING: Negative pressures at 17:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 17:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 17:00:00 hrs.
+   
+  WARNING: Negative pressures at 17:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 17:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 17:05:00 hrs.
+   
+  WARNING: Negative pressures at 17:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 17:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 17:10:00 hrs.
+   
+  WARNING: Negative pressures at 17:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 17:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 17:15:00 hrs.
+   
+  WARNING: Negative pressures at 17:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 17:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 17:20:00 hrs.
+   
+  WARNING: Negative pressures at 17:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 17:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 17:25:00 hrs.
+   
+  WARNING: Negative pressures at 17:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 17:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 17:30:00 hrs.
+   
+  WARNING: Negative pressures at 17:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 17:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 17:35:00 hrs.
+   
+  WARNING: Negative pressures at 17:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 17:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 17:40:00 hrs.
+   
+  WARNING: Negative pressures at 17:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 17:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 17:45:00 hrs.
+   
+  WARNING: Negative pressures at 17:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 17:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 17:50:00 hrs.
+   
+  WARNING: Negative pressures at 17:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 17:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 17:55:00 hrs.
+   
+  WARNING: Negative pressures at 18:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 18:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 18:00:00 hrs.
+   
+  WARNING: Negative pressures at 18:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 18:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 18:05:00 hrs.
+   
+  WARNING: Negative pressures at 18:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 18:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 18:10:00 hrs.
+   
+  WARNING: Negative pressures at 18:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 18:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 18:15:00 hrs.
+   
+  WARNING: Negative pressures at 18:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 18:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 18:20:00 hrs.
+   
+  WARNING: Negative pressures at 18:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 18:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 18:25:00 hrs.
+   
+  WARNING: Negative pressures at 18:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 18:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 18:30:00 hrs.
+   
+  WARNING: Negative pressures at 18:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 18:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 18:35:00 hrs.
+   
+  WARNING: Negative pressures at 18:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 18:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 18:40:00 hrs.
+   
+  WARNING: Negative pressures at 18:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 18:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 18:45:00 hrs.
+   
+  WARNING: Negative pressures at 18:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 18:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 18:50:00 hrs.
+   
+  WARNING: Negative pressures at 18:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 18:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 18:55:00 hrs.
+   
+  WARNING: Negative pressures at 19:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 19:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 19:00:00 hrs.
+   
+  WARNING: Negative pressures at 19:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 19:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 19:05:00 hrs.
+   
+  WARNING: Negative pressures at 19:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 19:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 19:10:00 hrs.
+   
+  WARNING: Negative pressures at 19:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 19:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 19:15:00 hrs.
+   
+  WARNING: Negative pressures at 19:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 19:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 19:20:00 hrs.
+   
+  WARNING: Negative pressures at 19:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 19:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 19:25:00 hrs.
+   
+  WARNING: Negative pressures at 19:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 19:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 19:30:00 hrs.
+   
+  WARNING: Negative pressures at 19:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 19:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 19:35:00 hrs.
+   
+  WARNING: Negative pressures at 19:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 19:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 19:40:00 hrs.
+   
+  WARNING: Negative pressures at 19:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 19:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 19:45:00 hrs.
+   
+  WARNING: Negative pressures at 19:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 19:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 19:50:00 hrs.
+   
+  WARNING: Negative pressures at 19:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 19:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 19:55:00 hrs.
+   
+  WARNING: Negative pressures at 20:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 20:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 20:00:00 hrs.
+   
+  WARNING: Negative pressures at 20:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 20:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 20:05:00 hrs.
+   
+  WARNING: Negative pressures at 20:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 20:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 20:10:00 hrs.
+   
+  WARNING: Negative pressures at 20:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 20:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 20:15:00 hrs.
+   
+  WARNING: Negative pressures at 20:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 20:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 20:20:00 hrs.
+   
+  WARNING: Negative pressures at 20:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 20:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 20:25:00 hrs.
+   
+  WARNING: Negative pressures at 20:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 20:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 20:30:00 hrs.
+   
+  WARNING: Negative pressures at 20:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 20:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 20:35:00 hrs.
+   
+  WARNING: Negative pressures at 20:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 20:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 20:40:00 hrs.
+   
+  WARNING: Negative pressures at 20:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 20:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 20:45:00 hrs.
+   
+  WARNING: Negative pressures at 20:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 20:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 20:50:00 hrs.
+   
+  WARNING: Negative pressures at 20:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 20:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 20:55:00 hrs.
+   
+  WARNING: Negative pressures at 21:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 21:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 21:00:00 hrs.
+   
+  WARNING: Negative pressures at 21:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 21:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 21:05:00 hrs.
+   
+  WARNING: Negative pressures at 21:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 21:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 21:10:00 hrs.
+   
+  WARNING: Negative pressures at 21:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 21:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 21:15:00 hrs.
+   
+  WARNING: Negative pressures at 21:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 21:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 21:20:00 hrs.
+   
+  WARNING: Negative pressures at 21:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 21:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 21:25:00 hrs.
+   
+  WARNING: Negative pressures at 21:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 21:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 21:30:00 hrs.
+   
+  WARNING: Negative pressures at 21:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 21:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 21:35:00 hrs.
+   
+  WARNING: Negative pressures at 21:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 21:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 21:40:00 hrs.
+   
+  WARNING: Negative pressures at 21:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 21:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 21:45:00 hrs.
+   
+  WARNING: Negative pressures at 21:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 21:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 21:50:00 hrs.
+   
+  WARNING: Negative pressures at 21:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 21:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 21:55:00 hrs.
+   
+  WARNING: Negative pressures at 22:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 22:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 22:00:00 hrs.
+   
+  WARNING: Negative pressures at 22:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 22:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 22:05:00 hrs.
+   
+  WARNING: Negative pressures at 22:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 22:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 22:10:00 hrs.
+   
+  WARNING: Negative pressures at 22:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 22:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 22:15:00 hrs.
+   
+  WARNING: Negative pressures at 22:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 22:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 22:20:00 hrs.
+   
+  WARNING: Negative pressures at 22:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 22:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 22:25:00 hrs.
+   
+  WARNING: Negative pressures at 22:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 22:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 22:30:00 hrs.
+   
+  WARNING: Negative pressures at 22:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 22:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 22:35:00 hrs.
+   
+  WARNING: Negative pressures at 22:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 22:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 22:40:00 hrs.
+   
+  WARNING: Negative pressures at 22:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 22:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 22:45:00 hrs.
+   
+  WARNING: Negative pressures at 22:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 22:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 22:50:00 hrs.
+   
+  WARNING: Negative pressures at 22:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 22:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 22:55:00 hrs.
+   
+  WARNING: Negative pressures at 23:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 23:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 23:00:00 hrs.
+   
+  WARNING: Negative pressures at 23:05:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 23:05:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 23:05:00 hrs.
+   
+  WARNING: Negative pressures at 23:10:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 23:10:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 23:10:00 hrs.
+   
+  WARNING: Negative pressures at 23:15:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 23:15:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 23:15:00 hrs.
+   
+  WARNING: Negative pressures at 23:20:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 23:20:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 23:20:00 hrs.
+   
+  WARNING: Negative pressures at 23:25:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 23:25:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 23:25:00 hrs.
+   
+  WARNING: Negative pressures at 23:30:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 23:30:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 23:30:00 hrs.
+   
+  WARNING: Negative pressures at 23:35:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 23:35:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 23:35:00 hrs.
+   
+  WARNING: Negative pressures at 23:40:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 23:40:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 23:40:00 hrs.
+   
+  WARNING: Negative pressures at 23:45:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 23:45:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 23:45:00 hrs.
+   
+  WARNING: Negative pressures at 23:50:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 23:50:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 23:50:00 hrs.
+   
+  WARNING: Negative pressures at 23:55:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 23:55:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 23:55:00 hrs.
+   
+  WARNING: Negative pressures at 24:00:00 hrs.
+  WARNING: Pump PU1 open but exceeds maximum flow at 24:00:00 hrs.
+  WARNING: Pump PU3 open but exceeds maximum flow at 24:00:00 hrs.
+   

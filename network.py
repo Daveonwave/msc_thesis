@@ -53,6 +53,26 @@ class WaterDistributionNetwork(epynet.Network):
             for junc in self.junctions:
                 junc.pattern = uid
 
+    # TODO: maybe useless
+    def delete_control_rules(self):
+        """
+        Deletes, if any, all the rule-based controls retrieved from .inp file
+        """
+        return
+
+    def demand_model_summary(self):
+        """
+        Print information related to the current demand model
+        """
+        dm_type, pmin, preq, pexp = self.ep.ENgetdemandmodel()
+        if dm_type == 0:
+            print("Running a demand driven analysis...")
+        else:
+            print("Running a pressure driven analysis...")
+            print("-> Minimum pressure: {:.2f}".format(pmin))
+            print("-> Required pressure: {:.2f}".format(preq))
+            print("-> Exponential pressure: {:.2f}".format(pexp))
+
     def run(self):
         """
         Step by step simulation: the idea is to put inside this function the online RL algorithm
@@ -171,14 +191,20 @@ class WaterDistributionNetwork(epynet.Network):
 
 
 if __name__ == '__main__':
-    net = WaterDistributionNetwork("ctown.inp")
+    net = WaterDistributionNetwork("anytown_pd.inp")
     net.set_time_params(duration=3600, rule_step=3600)
+    net.demand_model_summary()
+    net.ep.ENsetdemandmodel(0, 0, 0, 0)
+    net.demand_model_summary()
+    net.ep.ENsetdemandmodel(1, 0, 0.5, 0.5)
+    net.demand_model_summary()
     net.run()
+
 
     # net.set_basedemand_pattern(2)
     # net.set_time_params(duration=3600)
 
-    print(net.df_links_report)
+    print(net.df_nodes_report)
     # print(net.tanks.pressure)
     # print(net.junctions.results['22']['demand'])
 

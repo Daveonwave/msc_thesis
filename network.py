@@ -98,37 +98,6 @@ class WaterDistributionNetwork(epynet.Network):
         self.ep.ENcloseH()
         self.create_df_reports()
 
-    def load_attributes(self, simtime):
-        """
-        Override of the original method because it doesn't save pump status and pump speed for the current
-        simulation time
-        """
-        for node in self.nodes:
-            for property_name in node.properties.keys():
-                if property_name not in node.results.keys():
-                    node.results[property_name] = []
-                # clear cached values
-                node._values = {}
-                node.results[property_name].append(node.get_property(node.properties[property_name]))
-            node.times.append(simtime)
-
-        for link in self.links:
-            for property_name in link.properties.keys():
-                if property_name not in link.results.keys():
-                    link.results[property_name] = []
-                # clear cached values
-                link._values = {}
-                link.results[property_name].append(link.get_property(link.properties[property_name]))
-
-            for property_name in link.static_properties.keys():
-                if property_name in ["speed", "initstatus"]:
-                    if property_name not in link.results.keys():
-                        link.results[property_name] = []
-                    # clear cached values
-                    link._values = {}
-                    link.results[property_name].append(link.get_property(link.static_properties[property_name]))
-            link.times.append(simtime)
-
     def create_df_reports(self):
         """
         Create nodes and links report dataframes - 3 level dataframe
@@ -165,7 +134,7 @@ class WaterDistributionNetwork(epynet.Network):
         # We can assume that there is always at least one pump in each network, since would be pointless to study a wds
         # without this kind of links.
         pumps_ids = [uid for uid in self.pumps.uid]
-        pumps_iterables = [['pumps'], pumps_ids, ['flow', 'energy', 'speed', 'initstatus']]
+        pumps_iterables = [['pumps'], pumps_ids, ['flow', 'energy', 'status']]
         pumps_indices = pd.MultiIndex.from_product(iterables=pumps_iterables, names=["link", "id", "properties"])
         df_pumps = pd.DataFrame(columns=pumps_indices, index=times)
 
@@ -178,7 +147,7 @@ class WaterDistributionNetwork(epynet.Network):
         # We cannot do the same assumption for valves, as we can see in "anytown" network
         if self.valves:
             valves_ids = [uid for uid in self.valves.uid]
-            valves_iterables = [['valves'], valves_ids, ['velocity', 'flow', 'initstatus']]
+            valves_iterables = [['valves'], valves_ids, ['velocity', 'flow']]
             valves_indices = pd.MultiIndex.from_product(iterables=valves_iterables, names=["link", "id", "properties"])
 
             df_valves = pd.DataFrame(columns=valves_indices, index=times)
@@ -191,7 +160,7 @@ class WaterDistributionNetwork(epynet.Network):
 
 
 if __name__ == '__main__':
-    net = WaterDistributionNetwork("anytown_pd.inp")
+    net = WaterDistributionNetwork("ctown.inp")
     net.set_time_params(duration=3600, rule_step=3600)
     net.demand_model_summary()
     net.ep.ENsetdemandmodel(0, 0, 0, 0)
@@ -204,7 +173,7 @@ if __name__ == '__main__':
     # net.set_basedemand_pattern(2)
     # net.set_time_params(duration=3600)
 
-    print(net.df_nodes_report)
+    print(net.df_links_report)
     # print(net.tanks.pressure)
     # print(net.junctions.results['22']['demand'])
 

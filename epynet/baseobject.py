@@ -70,7 +70,10 @@ class BaseObject(object):
 
     def __setattr__(self, name, value):
         if name in self.properties.keys():
-            raise AttributeError("Illegal Assignment to Computed Value")
+            if name == 'status':
+                self.set_static_property(self.properties[name], value)
+            else:
+                raise AttributeError("Illegal Assignment to Computed Value")
 
         if name in self.static_properties.keys():
             self.set_static_property(self.static_properties[name], value)

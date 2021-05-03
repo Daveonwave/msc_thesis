@@ -77,8 +77,7 @@ class EPANET2(object):
         nomerpt: name of an output report file
         nomebin: name of an optional binary output file
         """
-        print(nomeinp)
-        ierr= self._lib.EN_open(self.ph, ctypes.c_char_p(nomeinp.encode()), 
+        ierr= self._lib.EN_open(self.ph, ctypes.c_char_p(nomeinp.encode()),
                           ctypes.c_char_p(nomerpt.encode()), 
                           ctypes.c_char_p(nomebin.encode()))
         if ierr!=0: 
@@ -628,7 +627,7 @@ class EPANET2(object):
                                   EN_EMITEXPON 
                                   EN_DEMANDMULT
           value:  option value"""
-        ierr= self._lib.EN_setoption(self.ph, ctypes.c_int(paramcode), ctypes.c_float(value))
+        ierr= self._lib.EN_setoption(self.ph, ctypes.c_int(optioncode), ctypes.c_float(value))
         if ierr!=0: raise ENtoolkitError(self, ierr)
 
 

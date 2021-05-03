@@ -4,6 +4,7 @@ from .objectcollection import ObjectCollection
 from .baseobject import BaseObject, lazy_property
 from .pattern import Pattern
 
+
 class Node(BaseObject):
     """ Base EPANET Node class """
 
@@ -73,9 +74,11 @@ class Node(BaseObject):
         return outflow
         """ calculates all the water flowing out of the node """
 
+
 class Reservoir(Node):
     """ EPANET Reservoir Class """
     node_type = "Reservoir"
+
 
 class Junction(Node):
     """ EPANET Junction Class """
@@ -100,6 +103,7 @@ class Junction(Node):
 
         self.network().solved = False
         self.set_object_value(epanet2.EN_PATTERN, pattern_index)
+
 
 class Tank(Node):
     """ EPANET Tank Class """

@@ -3,6 +3,9 @@ import pandas as pd
 import datetime
 import utils
 
+actuators_update_dict = {}
+step_count = 0
+
 
 class WaterDistributionNetwork(epynet.Network):
     """Class of the network inherited from Epynet.Network"""
@@ -11,6 +14,7 @@ class WaterDistributionNetwork(epynet.Network):
         self.df_nodes_report = None
         self.df_links_report = None
         self.times = []
+        self.interactive = False
 
     def set_time_params(self, duration=None, hydraulic_step=None, pattern_step=None, report_step=None, start_time=None,
                         rule_step=None):
@@ -53,13 +57,6 @@ class WaterDistributionNetwork(epynet.Network):
             for junc in self.junctions:
                 junc.pattern = uid
 
-    # TODO: maybe useless
-    def delete_control_rules(self):
-        """
-        Deletes, if any, all the rule-based controls retrieved from .inp file
-        """
-        return
-
     def demand_model_summary(self):
         """
         Print information related to the current demand model
@@ -73,7 +70,22 @@ class WaterDistributionNetwork(epynet.Network):
             print("-> Required pressure: {:.2f}".format(preq))
             print("-> Exponential pressure: {:.2f}".format(pexp))
 
-    def run(self):
+    def run(self, interactive=False, status_dict=None):
+        """
+        Run method wrapper to set the interactivity option (and others in the future related to RL)
+        :param interactive: to update the actuators with own values
+        :param status_dict: dictionary with predefined updates (just to test, it will be removed)
+        """
+        # TODO: remove status_dict
+        if status_dict is None:
+            interactive = False
+
+        global actuators_update_dict
+        actuators_update_dict = status_dict
+        self.interactive = interactive
+        self.__run()
+
+    def __run(self):
         """
         Step by step simulation: the idea is to put inside this function the online RL algorithm
         """
@@ -87,16 +99,42 @@ class WaterDistributionNetwork(epynet.Network):
 
         # timestep becomes 0 the last hydraulic step
         while timestep > 0:
-            # status of the links and nodes
-            # TODO: manage the status/speed of pumps avoiding control rules
-            self.ep.ENrunH()
-            timestep = self.ep.ENnextH()
-            self.times.append(curr_time)
-            self.load_attributes(curr_time)
+            # TODO: function split for future implementation of RL algorithm
+            timestep = self.simulate_step(curr_time=curr_time)
             curr_time += timestep
+
+            # update the status of actuators after the first step
+            if timestep != 0 and self.interactive:
+                self.update_actuators_status()
 
         self.ep.ENcloseH()
         self.create_df_reports()
+
+    def simulate_step(self, curr_time):
+        """
+        Simulation of one step from the given time
+        :param curr_time: current simulation time
+        :return: time until the next event, if 0 the simulation is going to end
+        """
+        self.ep.ENrunH()
+        timestep = self.ep.ENnextH()
+        self.times.append(curr_time)
+        self.load_attributes(curr_time)
+        return timestep
+
+    def update_actuators_status(self, new_status=None):
+        """
+        Set actuators (pumps and valves) status to a new current state
+        :param new_status: will be used in future with RL
+        TODO: update with new_status
+        """
+        global step_count
+        for uid in self.pumps.uid:
+            self.pumps[uid].status = actuators_update_dict[uid][step_count % 2]
+        for uid in self.valves.uid:
+            self.valves[uid].status = actuators_update_dict[uid][step_count % 2]
+        step_count += 1
+        print(self.pumps.status)
 
     def create_df_reports(self):
         """
@@ -147,7 +185,7 @@ class WaterDistributionNetwork(epynet.Network):
         # We cannot do the same assumption for valves, as we can see in "anytown" network
         if self.valves:
             valves_ids = [uid for uid in self.valves.uid]
-            valves_iterables = [['valves'], valves_ids, ['velocity', 'flow']]
+            valves_iterables = [['valves'], valves_ids, ['velocity', 'flow', 'status']]
             valves_indices = pd.MultiIndex.from_product(iterables=valves_iterables, names=["link", "id", "properties"])
 
             df_valves = pd.DataFrame(columns=valves_indices, index=times)
@@ -161,19 +199,19 @@ class WaterDistributionNetwork(epynet.Network):
 
 if __name__ == '__main__':
     net = WaterDistributionNetwork("ctown.inp")
-    net.set_time_params(duration=3600, rule_step=3600)
-    net.demand_model_summary()
-    net.ep.ENsetdemandmodel(0, 0, 0, 0)
-    net.demand_model_summary()
-    net.ep.ENsetdemandmodel(1, 0, 0.5, 0.5)
-    net.demand_model_summary()
-    net.run()
+    net.set_time_params(duration=3600, hydraulic_step=300)
 
+    status = [1.0, 0.0]
+    actuators_update_dict = {uid: status for uid in net.pumps.uid.append(net.valves.uid)}
+
+    net.run(interactive=True, status_dict=actuators_update_dict)
 
     # net.set_basedemand_pattern(2)
     # net.set_time_params(duration=3600)
 
-    print(net.df_links_report)
+    print(net.pumps['PU1']._values)
+    print(net.df_links_report['pumps', 'PU1'])
+    # print(net.df_links_report.iloc[:, net.df_links_report.columns.get_level_values(2) == 'status'])
     # print(net.tanks.pressure)
     # print(net.junctions.results['22']['demand'])
 

@@ -108,7 +108,7 @@ class Valve(Link):
 
     static_properties = {'setting': epanet2.EN_INITSETTING, 'initstatus': epanet2.EN_INITSTATUS,
                          'diameter': epanet2.EN_DIAMETER}
-    properties = {'velocity': epanet2.EN_VELOCITY, 'flow': epanet2.EN_FLOW}
+    properties = {'velocity': epanet2.EN_VELOCITY, 'flow': epanet2.EN_FLOW, 'status': epanet2.EN_STATUS}
 
     link_type = 'valve'
 

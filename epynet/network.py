@@ -367,20 +367,20 @@ class Network(object):
 
     def load_attributes(self, simtime):
         for node in self.nodes:
+            # clear cached values
+            node._values = {}
             for property_name in node.properties.keys():
                 if property_name not in node.results.keys():
                     node.results[property_name] = []
-                # clear cached values
-                node._values = {}
                 node.results[property_name].append(node.get_property(node.properties[property_name]))
             node.times.append(simtime)
 
         for link in self.links:
+            # clear cached values
+            link._values = {}
             for property_name in link.properties.keys():
                 if property_name not in link.results.keys():
                     link.results[property_name] = []
-                # clear cached values
-                link._values = {}
                 link.results[property_name].append(link.get_property(link.properties[property_name]))
             link.times.append(simtime)
 

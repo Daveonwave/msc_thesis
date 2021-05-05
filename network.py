@@ -75,14 +75,14 @@ class WaterDistributionNetwork(epynet.Network):
         Run method wrapper to set the interactivity option (and others in the future related to RL)
         :param interactive: to update the actuators with own values
         :param status_dict: dictionary with predefined updates (just to test, it will be removed)
+        TODO: remove status_dict
         """
-        # TODO: remove status_dict
-        if status_dict is None:
-            interactive = False
-
         global actuators_update_dict
-        actuators_update_dict = status_dict
-        self.interactive = interactive
+        if status_dict and interactive:
+            actuators_update_dict = status_dict
+            self.interactive = interactive
+        else:
+            self.interactive = False
         self.__run()
 
     def __run(self):

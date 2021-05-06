@@ -1,4 +1,4 @@
-  Page 1                                    Mon May  3 16:00:52 2021
+  Page 1                                    Thu May  6 20:52:13 2021
 
   ******************************************************************
   *                           E P A N E T                          *
@@ -7,22 +7,8 @@
   *                         Version 2.2                            *
   ******************************************************************
   
-  Analysis begun Mon May  3 16:00:52 2021
+  Analysis begun Thu May  6 20:52:13 2021
 
-  WARNING: Negative pressures at 0:05:00 hrs.
-  WARNING: Node J130 disconnected at 0:05:00 hrs
-  WARNING: Node J28 disconnected at 0:05:00 hrs
-  WARNING: Node J29 disconnected at 0:05:00 hrs
-  WARNING: Node J32 disconnected at 0:05:00 hrs
-  WARNING: Node J33 disconnected at 0:05:00 hrs
-  WARNING: Node J34 disconnected at 0:05:00 hrs
-  WARNING: Node J36 disconnected at 0:05:00 hrs
-  WARNING: Node J38 disconnected at 0:05:00 hrs
-  WARNING: Node J81 disconnected at 0:05:00 hrs
-  WARNING: Node J88 disconnected at 0:05:00 hrs
-  WARNING: 8 additional nodes disconnected at 0:05:00 hrs
-  WARNING: System disconnected because of Link V47
-   
   WARNING: Negative pressures at 0:10:00 hrs.
   WARNING: Node J130 disconnected at 0:10:00 hrs
   WARNING: Node J28 disconnected at 0:10:00 hrs
@@ -51,20 +37,6 @@
   WARNING: 8 additional nodes disconnected at 0:15:00 hrs
   WARNING: System disconnected because of Link V47
    
-  WARNING: Negative pressures at 0:20:00 hrs.
-  WARNING: Node J130 disconnected at 0:20:00 hrs
-  WARNING: Node J28 disconnected at 0:20:00 hrs
-  WARNING: Node J29 disconnected at 0:20:00 hrs
-  WARNING: Node J32 disconnected at 0:20:00 hrs
-  WARNING: Node J33 disconnected at 0:20:00 hrs
-  WARNING: Node J34 disconnected at 0:20:00 hrs
-  WARNING: Node J36 disconnected at 0:20:00 hrs
-  WARNING: Node J38 disconnected at 0:20:00 hrs
-  WARNING: Node J81 disconnected at 0:20:00 hrs
-  WARNING: Node J88 disconnected at 0:20:00 hrs
-  WARNING: 8 additional nodes disconnected at 0:20:00 hrs
-  WARNING: System disconnected because of Link V47
-   
   WARNING: Negative pressures at 0:25:00 hrs.
   WARNING: Node J130 disconnected at 0:25:00 hrs
   WARNING: Node J28 disconnected at 0:25:00 hrs
@@ -91,20 +63,6 @@
   WARNING: Node J81 disconnected at 0:30:00 hrs
   WARNING: Node J88 disconnected at 0:30:00 hrs
   WARNING: 8 additional nodes disconnected at 0:30:00 hrs
-  WARNING: System disconnected because of Link V47
-   
-  WARNING: Negative pressures at 0:35:00 hrs.
-  WARNING: Node J130 disconnected at 0:35:00 hrs
-  WARNING: Node J28 disconnected at 0:35:00 hrs
-  WARNING: Node J29 disconnected at 0:35:00 hrs
-  WARNING: Node J32 disconnected at 0:35:00 hrs
-  WARNING: Node J33 disconnected at 0:35:00 hrs
-  WARNING: Node J34 disconnected at 0:35:00 hrs
-  WARNING: Node J36 disconnected at 0:35:00 hrs
-  WARNING: Node J38 disconnected at 0:35:00 hrs
-  WARNING: Node J81 disconnected at 0:35:00 hrs
-  WARNING: Node J88 disconnected at 0:35:00 hrs
-  WARNING: 8 additional nodes disconnected at 0:35:00 hrs
   WARNING: System disconnected because of Link V47
    
   WARNING: Negative pressures at 0:40:00 hrs.
@@ -175,4 +133,5 @@
   WARNING: Node J81 disconnected at 1:00:00 hrs
   WARNING: Node J88 disconnected at 1:00:00 hrs
   WARNING: 8 additional nodes disconnected at 1:00:00 hrs
-  WARNING: System disconnected becaus
+  WARNING: System disconnected because of Link V47
+   

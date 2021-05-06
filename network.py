@@ -15,6 +15,7 @@ class WaterDistributionNetwork(epynet.Network):
         self.df_links_report = None
         self.times = []
         self.interactive = False
+        self.network_state = pd.Series()
 
     def set_time_params(self, duration=None, hydraulic_step=None, pattern_step=None, report_step=None, start_time=None,
                         rule_step=None):
@@ -89,18 +90,14 @@ class WaterDistributionNetwork(epynet.Network):
         """
         Step by step simulation: the idea is to put inside this function the online RL algorithm
         """
-        self.reset()
-        self.times = []
-        self.ep.ENopenH()
-        self.ep.ENinitH(flag=0)
-
+        self.init_simulation()
         curr_time = 0
         timestep = 1
 
         # timestep becomes 0 the last hydraulic step
         while timestep > 0:
-            # TODO: function split for future implementation of RL algorithm
-            timestep = self.simulate_step(curr_time=curr_time)
+            timestep, state = self.simulate_step(curr_time=curr_time)
+            print(state['PU2'])
             curr_time += timestep
 
             # update the status of actuators after the first step
@@ -109,6 +106,15 @@ class WaterDistributionNetwork(epynet.Network):
 
         self.ep.ENcloseH()
         self.create_df_reports()
+
+    def init_simulation(self):
+        """
+         Initialiaze the network simulation
+        """
+        self.reset()
+        self.times = []
+        self.ep.ENopenH()
+        self.ep.ENinitH(flag=0)
 
     def simulate_step(self, curr_time):
         """
@@ -120,7 +126,7 @@ class WaterDistributionNetwork(epynet.Network):
         timestep = self.ep.ENnextH()
         self.times.append(curr_time)
         self.load_attributes(curr_time)
-        return timestep
+        return timestep, self.get_network_state()
 
     def update_actuators_status(self, new_status=None):
         """
@@ -134,7 +140,25 @@ class WaterDistributionNetwork(epynet.Network):
         for uid in self.valves.uid:
             self.valves[uid].status = actuators_update_dict[uid][step_count % 2]
         step_count += 1
-        print(self.pumps.status)
+
+    def get_network_state(self):
+        """
+        Retrieve the current values of the network in the form a pandas series of dictionaries.
+        The collected values are referred to:
+            - tanks: {pressure}
+            - junctions: {pressure}
+            - pumps: {status, flow}
+            - valves: {status, flow}
+        :return: the series with the above enlisted values
+        """
+        network_state = pd.Series()
+        for uid in self.tanks.results.index.append(self.junctions.results.index):
+            nodes_dict = {key: self.nodes[uid].results[key][-1] for key in ['pressure']}
+            network_state[uid] = nodes_dict
+        for uid in self.pumps.results.index.append(self.valves.results.index):
+            links_dict = {key: self.links[uid].results[key][-1] for key in ['status', 'flow']}
+            network_state[uid] = links_dict
+        return network_state
 
     def create_df_reports(self):
         """
@@ -208,9 +232,13 @@ if __name__ == '__main__':
 
     # net.set_basedemand_pattern(2)
     # net.set_time_params(duration=3600)
+    # for pump in net.pumps:
+    #     print(pump.results['status', 'flow'][1])
 
-    print(net.pumps['PU1']._values)
-    print(net.df_links_report['pumps', 'PU1'])
+    curr_results = pd.Series(index=net.pumps.index)
+    # print(net.pumps.results.index)
+
+    # print(net.df_links_report['pumps', 'PU1'])
     # print(net.df_links_report.iloc[:, net.df_links_report.columns.get_level_values(2) == 'status'])
     # print(net.tanks.pressure)
     # print(net.junctions.results['22']['demand'])

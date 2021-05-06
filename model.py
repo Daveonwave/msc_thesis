@@ -18,7 +18,7 @@ class Model:
 
             curr_time = 0
             # First epanet simulation step (maybe can be predicted by RL)
-            timestep = self.wds.simulate_step(curr_time)
+            obs, timestep = self.wds.simulate_step(curr_time)
 
             while timestep > 0:
                 action, _states = self.predict(obs)

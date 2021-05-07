@@ -3,6 +3,7 @@ import pandas as pd
 import datetime
 import utils
 
+# TODO: remove global variables
 actuators_update_dict = {}
 step_count = 0
 
@@ -97,7 +98,6 @@ class WaterDistributionNetwork(epynet.Network):
         # timestep becomes 0 the last hydraulic step
         while timestep > 0:
             timestep, state = self.simulate_step(curr_time=curr_time)
-            print(state['PU2'])
             curr_time += timestep
 
             # update the status of actuators after the first step
@@ -137,8 +137,9 @@ class WaterDistributionNetwork(epynet.Network):
         global step_count
         for uid in self.pumps.uid:
             self.pumps[uid].status = actuators_update_dict[uid][step_count % 2]
-        for uid in self.valves.uid:
-            self.valves[uid].status = actuators_update_dict[uid][step_count % 2]
+        if self.valves:
+            for uid in self.valves.uid:
+                self.valves[uid].status = actuators_update_dict[uid][step_count % 2]
         step_count += 1
 
     def get_network_state(self):
@@ -155,9 +156,15 @@ class WaterDistributionNetwork(epynet.Network):
         for uid in self.tanks.results.index.append(self.junctions.results.index):
             nodes_dict = {key: self.nodes[uid].results[key][-1] for key in ['pressure']}
             network_state[uid] = nodes_dict
-        for uid in self.pumps.results.index.append(self.valves.results.index):
-            links_dict = {key: self.links[uid].results[key][-1] for key in ['status', 'flow']}
-            network_state[uid] = links_dict
+
+        if self.valves:
+            for uid in self.pumps.results.index.append(self.valves.results.index):
+                links_dict = {key: self.links[uid].results[key][-1] for key in ['status', 'flow']}
+                network_state[uid] = links_dict
+        else:
+            for uid in self.pumps.results.index:
+                links_dict = {key: self.pumps[uid].results[key][-1] for key in ['status', 'flow']}
+                network_state[uid] = links_dict
         return network_state
 
     def create_df_reports(self):
@@ -222,21 +229,23 @@ class WaterDistributionNetwork(epynet.Network):
 
 
 if __name__ == '__main__':
-    net = WaterDistributionNetwork("ctown.inp")
+    net = WaterDistributionNetwork("ctown_pd.inp")
     net.set_time_params(duration=3600, hydraulic_step=300)
+    net.demand_model_summary()
 
     status = [1.0, 0.0]
-    actuators_update_dict = {uid: status for uid in net.pumps.uid.append(net.valves.uid)}
+    if net.valves:
+        actuators_update_dict = {uid: status for uid in net.pumps.uid.append(net.valves.uid)}
+    else:
+        actuators_update_dict = {uid: status for uid in net.pumps.uid}
 
     net.run(interactive=True, status_dict=actuators_update_dict)
 
     # net.set_basedemand_pattern(2)
     # net.set_time_params(duration=3600)
-    # for pump in net.pumps:
-    #     print(pump.results['status', 'flow'][1])
-
-    curr_results = pd.Series(index=net.pumps.index)
     # print(net.pumps.results.index)
+
+    print(net.df_links_report['pumps', 'PU2'])
 
     # print(net.df_links_report['pumps', 'PU1'])
     # print(net.df_links_report.iloc[:, net.df_links_report.columns.get_level_values(2) == 'status'])

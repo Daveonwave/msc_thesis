@@ -1,7 +1,8 @@
 import epynet
 import pandas as pd
 import datetime
-from scripts import utils
+#from scripts import utils
+import utils
 
 # TODO: remove global variables
 actuators_update_dict = {}
@@ -139,6 +140,9 @@ class WaterDistributionNetwork(epynet.Network):
 
         return timestep, self.get_network_state()
 
+    # /Andres: We should do the other way around, go over the new_status list. This would avoid two inconvenients:
+    # 1) Allows to pass an empty new_status list if we don't want to change the status in that step
+    # 2) Avoids having to order (do we have to order) the status list/
     def update_actuators_status(self, new_status):
         """
         Set actuators (pumps and valves) status to a new current state

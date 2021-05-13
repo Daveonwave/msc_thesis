@@ -1,8 +1,7 @@
 import epynet
 import pandas as pd
 import datetime
-#from scripts import utils
-import utils
+from scripts import utils
 
 # TODO: remove global variables
 actuators_update_dict = {}
@@ -15,7 +14,9 @@ class WaterDistributionNetwork(epynet.Network):
         super().__init__(inputfile=inpfile)
         self.df_nodes_report = None
         self.df_links_report = None
-        self.times = []        
+        self.times = []
+        # Interactive flag can be set in run() or in init_simulation() if you want to build manually the step-by-step
+        self.interactive = False
         self.network_state = pd.Series()
 
     def set_time_params(self, duration=None, hydraulic_step=None, pattern_step=None, report_step=None, start_time=None,
@@ -91,7 +92,7 @@ class WaterDistributionNetwork(epynet.Network):
         """
         Step by step simulation: the idea is to put inside this function the online RL algorithm
         """
-        self.init_simulation(self.interactive)
+        self.init_simulation(interactive=self.interactive)
         curr_time = 0
         timestep = 1
 
@@ -245,9 +246,13 @@ class WaterDistributionNetwork(epynet.Network):
 
 
 if __name__ == '__main__':
-    net = WaterDistributionNetwork("ctown_pd.inp")
+    net = WaterDistributionNetwork("ctown.inp")
     net.set_time_params(duration=3600, hydraulic_step=300)
     net.demand_model_summary()
+
+    #for junc in net.junctions:
+    #    print("basedemand: " + str(junc.basedemand) + ";    demand: " + str(junc.emitter))
+    #exit(0)
 
     status = [1.0, 0.0]
     if net.valves:
@@ -257,16 +262,19 @@ if __name__ == '__main__':
 
     net.run(interactive=True, status_dict=actuators_update_dict)
 
+    pumps_energy = sum([net.df_links_report['pumps', pump_id, 'energy'].sum() for pump_id in net.pumps.uid])
+    print(pumps_energy)
+    exit(0)
+
+    times = [datetime.timedelta(seconds=time) for time in net.times]
     # net.set_basedemand_pattern(2)
     # net.set_time_params(duration=3600)
     # print(net.pumps.results.index)
 
-    print(net.df_links_report['pumps', 'PU2'])
-
-    # print(net.df_links_report['pumps', 'PU1'])
     # print(net.df_links_report.iloc[:, net.df_links_report.columns.get_level_values(2) == 'status'])
-    # print(net.tanks.pressure)
-    # print(net.junctions.results['22']['demand'])
+    for time in times[:5]:
+        print(str(time) + ": " +
+              str(net.df_nodes_report.loc[time]['junctions', 'J147', 'demand']))
 
 
 

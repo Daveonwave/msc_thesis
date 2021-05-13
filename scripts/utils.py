@@ -32,6 +32,7 @@ def time_parameters_summary(wds: en.Network):
 
 
 if __name__ == '__main__':
+    from scripts import utils
     print(utils.get_time_param_code("EN_HYSTEP"))
 
 

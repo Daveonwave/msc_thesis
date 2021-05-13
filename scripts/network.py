@@ -1,7 +1,8 @@
 import epynet
 import pandas as pd
 import datetime
-from scripts import utils
+#from scripts import utils
+import utils
 
 # TODO: remove global variables
 actuators_update_dict = {}
@@ -14,8 +15,7 @@ class WaterDistributionNetwork(epynet.Network):
         super().__init__(inputfile=inpfile)
         self.df_nodes_report = None
         self.df_links_report = None
-        self.times = []
-        self.interactive = False
+        self.times = []        
         self.network_state = pd.Series()
 
     def set_time_params(self, duration=None, hydraulic_step=None, pattern_step=None, report_step=None, start_time=None,
@@ -91,7 +91,7 @@ class WaterDistributionNetwork(epynet.Network):
         """
         Step by step simulation: the idea is to put inside this function the online RL algorithm
         """
-        self.init_simulation()
+        self.init_simulation(self.interactive)
         curr_time = 0
         timestep = 1
 
@@ -110,10 +110,12 @@ class WaterDistributionNetwork(epynet.Network):
         self.ep.ENcloseH()
         self.create_df_reports()
 
-    def init_simulation(self):
+    def init_simulation(self, interactive=False):
         """
          Initialiaze the network simulation
         """
+
+        self.interactive = interactive
         self.reset()
         self.times = []
         self.ep.ENopenH()
@@ -139,6 +141,9 @@ class WaterDistributionNetwork(epynet.Network):
 
         return timestep, self.get_network_state()
 
+    # /Andres: We should do the other way around, go over the new_status list. This would avoid two inconvenients:
+    # 1) Allows to pass an empty new_status list if we don't want to change the status in that step
+    # 2) Avoids having to order (do we have to order) the status list/
     def update_actuators_status(self, new_status):
         """
         Set actuators (pumps and valves) status to a new current state

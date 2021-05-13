@@ -151,4 +151,8 @@ $RECYCLE.BIN/
 # Csv file
 #*.csv
 
+# Epanet
+*.rpt
+.towns/*.rpt
+
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,jupyternotebooks,windows

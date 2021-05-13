@@ -1112,7 +1112,7 @@ LINK          PU7 CLOSED IF NODE          T4            ABOVE          4.5
 
 ; ----------- T5 ---
 LINK          PU8 OPEN IF   NODE          T5            BELOW          1.5
-;LINK          PU8 CLOSED IF NODE          T5            ABOVE          4.5
+LINK          PU8 CLOSED IF NODE          T5            ABOVE          4.5
 
 ; ----------- T7 ---
 LINK          PU10 OPEN IF  NODE          T7            BELOW          2.5 

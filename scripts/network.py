@@ -1,7 +1,7 @@
 import epynet
 import pandas as pd
 import datetime
-from scripts import utils
+from scripts import epynetUtils
 
 # TODO: remove global variables
 actuators_update_dict = {}
@@ -31,17 +31,17 @@ class WaterDistributionNetwork(epynet.Network):
         :param rule_step: EN_RULESTEP
         """
         if duration is not None:
-            self.ep.ENsettimeparam(utils.get_time_param_code('EN_DURATION'), duration)
+            self.ep.ENsettimeparam(epynetUtils.get_time_param_code('EN_DURATION'), duration)
         if hydraulic_step is not None:
-            self.ep.ENsettimeparam(utils.get_time_param_code('EN_HYDSTEP'), hydraulic_step)
+            self.ep.ENsettimeparam(epynetUtils.get_time_param_code('EN_HYDSTEP'), hydraulic_step)
         if pattern_step is not None:
-            self.ep.ENsettimeparam(utils.get_time_param_code('EN_PATTERNSTEP'), pattern_step)
+            self.ep.ENsettimeparam(epynetUtils.get_time_param_code('EN_PATTERNSTEP'), pattern_step)
         if report_step is not None:
-            self.ep.ENsettimeparam(utils.get_time_param_code('EN_REPORTSTEP'), report_step)
+            self.ep.ENsettimeparam(epynetUtils.get_time_param_code('EN_REPORTSTEP'), report_step)
         if start_time is not None:
-            self.ep.ENsettimeparam(utils.get_time_param_code('EN_STARTTIME'), start_time)
+            self.ep.ENsettimeparam(epynetUtils.get_time_param_code('EN_STARTTIME'), start_time)
         if rule_step is not None:
-            self.ep.ENsettimeparam(utils.get_time_param_code('EN_RULESTEP'), rule_step)
+            self.ep.ENsettimeparam(epynetUtils.get_time_param_code('EN_RULESTEP'), rule_step)
 
     def set_demand_pattern(self, uid: str, values=None):
         """
@@ -104,7 +104,7 @@ class WaterDistributionNetwork(epynet.Network):
             # in DHALSIM here there should be:
             # update_state(state)
 
-            # update the status of actuators after the first step
+            # TODO: remember to comment in DHALSIM
             # if timestep != 0 and self.interactive:
             #    self.update_actuators_status()
 
@@ -115,14 +115,13 @@ class WaterDistributionNetwork(epynet.Network):
         """
          Initialiaze the network simulation
         """
-
         self.interactive = interactive
         self.reset()
         self.times = []
         self.ep.ENopenH()
         self.ep.ENinitH(flag=0)
 
-    def simulate_step(self, curr_time, actuators_status):
+    def simulate_step(self, curr_time, actuators_status=None):
         """
         Simulation of one step from the given time
         :param actuators_status: dictionary with status update for actuators
@@ -137,14 +136,12 @@ class WaterDistributionNetwork(epynet.Network):
         self.load_attributes(curr_time)
 
         # update the status of actuators after the first step
-        if timestep != 0 and self.interactive:
-            self.update_actuators_status(actuators_status)
+        # TODO: remember to uncomment with interactive simulation in DHALSIM
+        # if timestep != 0 and self.interactive:
+        #     self.update_actuators_status(actuators_status)
 
         return timestep, self.get_network_state()
 
-    # /Andres: We should do the other way around, go over the new_status list. This would avoid two inconvenients:
-    # 1) Allows to pass an empty new_status list if we don't want to change the status in that step
-    # 2) Avoids having to order (do we have to order) the status list/
     def update_actuators_status(self, new_status):
         """
         Set actuators (pumps and valves) status to a new current state
@@ -152,11 +149,9 @@ class WaterDistributionNetwork(epynet.Network):
         TODO: update with new_status and remove step_count
         """
         global step_count
-        for uid in self.pumps.uid:
-            self.pumps[uid].status = new_status[uid][step_count % 2]
-        if self.valves:
-            for uid in self.valves.uid:
-                self.valves[uid].status = new_status[uid][step_count % 2]
+        for uid in new_status.keys():
+            # self.links[uid].status = new_status[uid][step_count % 2]
+            self.links[uid].status = new_status[uid]
         step_count += 1
 
     def get_network_state(self):
@@ -243,38 +238,6 @@ class WaterDistributionNetwork(epynet.Network):
                 df_valves['valves', i, j] = self.valves.results[i][j]
 
             self.df_links_report = pd.concat([df_pumps, df_valves], axis=1)
-
-
-if __name__ == '__main__':
-    net = WaterDistributionNetwork("ctown.inp")
-    net.set_time_params(duration=3600, hydraulic_step=300)
-    net.demand_model_summary()
-
-    #for junc in net.junctions:
-    #    print("basedemand: " + str(junc.basedemand) + ";    demand: " + str(junc.emitter))
-    #exit(0)
-
-    status = [1.0, 0.0]
-    if net.valves:
-        actuators_update_dict = {uid: status for uid in net.pumps.uid.append(net.valves.uid)}
-    else:
-        actuators_update_dict = {uid: status for uid in net.pumps.uid}
-
-    net.run(interactive=True, status_dict=actuators_update_dict)
-
-    pumps_energy = sum([net.df_links_report['pumps', pump_id, 'energy'].sum() for pump_id in net.pumps.uid])
-    print(pumps_energy)
-    exit(0)
-
-    times = [datetime.timedelta(seconds=time) for time in net.times]
-    # net.set_basedemand_pattern(2)
-    # net.set_time_params(duration=3600)
-    # print(net.pumps.results.index)
-
-    # print(net.df_links_report.iloc[:, net.df_links_report.columns.get_level_values(2) == 'status'])
-    for time in times[:5]:
-        print(str(time) + ": " +
-              str(net.df_nodes_report.loc[time]['junctions', 'J147', 'demand']))
 
 
 

@@ -29,10 +29,3 @@ def get_time_parameter(wds: en.Network, code: int):
 def time_parameters_summary(wds: en.Network):
     for i in time_params.keys():
         print(get_time_parameter(wds, int(i)))
-
-
-if __name__ == '__main__':
-    from scripts import utils
-    print(utils.get_time_param_code("EN_HYSTEP"))
-
-

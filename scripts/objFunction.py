@@ -20,12 +20,30 @@ def supply_demand_ratio(wds: network.WaterDistributionNetwork, driven_links):
     times = [datetime.timedelta(seconds=time) for time in wds.times]
     for time in times:
         # TODO: check if we need actually the demand or something else
-        r_demand = sum([wds.df_nodes_report.loc[time]['junctions', junc_id, 'demand'] for junc_id in wds.junctions.uid])
-        d_demand = sum([wds.df_links_report.loc[time][:, link_id, 'flow'] for link_id in driven_links])
+        r_demand = sum([wds.df_nodes_report.loc[time]['junctions', junc_id, 'demand'].sum() for junc_id in wds.junctions.uid])
+        d_demand = sum([wds.df_links_report.loc[time][:, link_id, 'flow'].sum() for link_id in driven_links])
+        #print(r_demand)
+        #print(d_demand)
         tot_r = tot_r + r_demand
         tot_d = tot_d + d_demand
 
+    print(tot_r)
+    print(tot_d)
     ratio = tot_d / tot_r
+    return ratio
+
+
+def supply_demand_ratio2(wds: network.WaterDistributionNetwork, driven_links):
+    if not wds.solved:
+        return -1
+
+    # TODO: check if we need actually the demand or something else
+    tot_requested = sum([wds.df_nodes_report['junctions', junc_id, 'demand'].sum() for junc_id in wds.junctions.uid])
+    tot_delivered = sum([wds.df_links_report['pumps', link_id, 'flow'].sum() for link_id in driven_links])
+
+    #print(tot_requested)
+    #print(tot_delivered)
+    ratio = tot_delivered / tot_requested
     return ratio
 
 

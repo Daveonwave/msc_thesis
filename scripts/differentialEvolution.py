@@ -1,4 +1,6 @@
-import scipy as sp
+import time
+import datetime
+from tqdm import tqdm
 import numpy as np
 from scripts import network
 from scripts import objFunction
@@ -28,7 +30,6 @@ class DifferentialEvolution:
         self.best_candidate = {'config': {}, 'value': 0}
         self.population = []
         self.best_population = []
-
 
     def populate(self):
         """
@@ -75,19 +76,21 @@ class DifferentialEvolution:
         :return:
         """
         self.wds.set_time_params(duration=self.duration, hydraulic_step=self.hyd_step)
+        start_time = time.time()
 
         self.population = pop
         # while iteration < max_iterations:
         for i in range(self.n_generations):
             # for individual in population:
-            print("> Genaration " + str(i) + ": ...")
+            print("> STARTING GENERATION " + str(i) + ": ...")
             for k, target in enumerate(self.population):
                 mutant = self.mutatation(k)
                 candidate = self.recombination(target, mutant)
                 if self.selection(target, candidate):
                     self.population[k] = candidate
-                #TODO: DE stopping conditions
-            print(">>> DONE")
+                print(" ----- Elapsed time [{}] -----".format(datetime.timedelta(seconds=time.time() - start_time)))
+                # TODO: DE stopping conditions
+            print("> GENERATION DONE!")
             print("> Best generation member: " + str(self.best_candidate['config']))
             print("> Best generation value: " + str(self.best_candidate['value']))
 
@@ -109,7 +112,7 @@ class DifferentialEvolution:
         mutant = []
         for j in range(len(a)):
             rand_var = np.random.uniform(0, 1)
-            if b[j] != c[j] and rand_var < 0.7:
+            if b[j] != c[j] and rand_var < self.F:
                 mutant.append(1 - a[j])
             else:
                 mutant.append(a[j])
@@ -142,23 +145,26 @@ class DifferentialEvolution:
             idx += 1
 
         parent_value = self.evaluation(parent)
-        print("Parent: candidate = {}, value = {}".format(parent, parent_value))
+        print(">>> Parent: candidate = {}, value = {}".format(parent, parent_value))
         child_value = self.evaluation(child)
-        print("Child: candidate = {}, value = {}".format(child, child_value))
+        print(">>> Child: candidate = {}, value = {}".format(child, child_value))
 
         update_pop = False
         # We maximize the objective function
-        if parent_value >= child_value:
+        if child_value >= parent_value:
             update_pop = True
             # Update the best candidate with the new candidate
             if child_value > self.best_candidate['value']:
                 self.best_candidate['config'] = candidate
                 self.best_candidate['value'] = child_value
+                print('    -> NEW BEST CANDIDATE FOUND!')
         else:
             # Update the best candidate with the old target
             if parent_value > self.best_candidate['value']:
                 self.best_candidate['config'] = target
                 self.best_candidate['value'] = parent_value
+                print('    -> NEW BEST CANDIDATE FOUND!')
+        print('    --> Substitution: {}'.format(update_pop))
         return update_pop
 
     def evaluation(self, candidate):
@@ -184,18 +190,16 @@ class DifferentialEvolution:
         # Initialize status of pumps with the first element in the update list of the candidate
         init_status = {pump_id: candidate[pump_id][0] for pump_id in candidate.keys()}
         self.wds.update_actuators_status(init_status)
-        print("Initial update")
 
         # timestep becomes 0 the last hydraulic step
         while timestep > 0:
             # Check if it's needed an update
-            if update_time >= self.update_interval:
+            if update_time > self.update_interval:
                 update_index = curr_time // self.update_interval
                 new_status = {pump_id: candidate[pump_id][update_index] for pump_id in candidate.keys()}
                 # new status= {'PU1':1, 'PU2':0}
                 self.wds.update_actuators_status(new_status)
                 update_time -= self.update_interval
-                print("-> update")
 
             # Changed simulate_step method since it doesn't update status by itself
             timestep, state = self.wds.simulate_step(curr_time=curr_time)
@@ -203,6 +207,7 @@ class DifferentialEvolution:
             update_time += timestep
 
         self.wds.ep.ENcloseH()
+        self.wds.solved = True
         # TODO: check if it is faster without reports and only with result series
         self.wds.create_df_reports()
 
@@ -217,7 +222,7 @@ if __name__ == '__main__':
         'F': 0.5
     }
 
-    net = network.WaterDistributionNetwork("anytown.inp")
+    net = network.WaterDistributionNetwork("anytown_pd.inp")
     de = DifferentialEvolution(net, objFunction.supply_demand_ratio, **DE_params)
     duration = 86400
     hyd_step = 600

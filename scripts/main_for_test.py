@@ -3,17 +3,10 @@ if __name__ == '__main__':
     import datetime
 
     # Trials modifying init tanks level
-    net = network.WaterDistributionNetwork("ctown.inp")
+    net = network.WaterDistributionNetwork("anytown_pd.inp")
     net.set_time_params(duration=3600, hydraulic_step=300)
     # print(net.tanks.tanklevel)
-    index = net.tanks['T1'].index
-    net.ep.ENsetnodevalue(index, 8, 4.5)
-    print(net.tanks.tanklevel)
-    net.ep.ENsetnodevalue(index, 8, 3)
-    net.load_network()
-    print(net.tanks.tanklevel)
     net.run()
-    print(net.df_links_report)
     exit(0)
 
     net.demand_model_summary()

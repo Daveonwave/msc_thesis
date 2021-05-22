@@ -1,6 +1,8 @@
 import epynet
 import pandas as pd
 import datetime
+from tqdm import tqdm
+from time import sleep
 from scripts import epynetUtils
 
 # TODO: remove global variables
@@ -43,21 +45,23 @@ class WaterDistributionNetwork(epynet.Network):
         if rule_step is not None:
             self.ep.ENsettimeparam(epynetUtils.get_time_param_code('EN_RULESTEP'), rule_step)
 
-    def set_demand_pattern(self, uid: str, values=None):
+    def set_demand_pattern(self, uid: str, values=None, junctions=None):
         """
         Set a base-demand pattern for junctions if exists, otherwise it creates and set a new pattern
         :param uid: pattern id
         :param values: list of multipliers, None if already existing
+        :param junctions: list of junctions to which we want to set the pattern
         """
         if values is None:
-            if uid in self.patterns.uid:
-                for junc in self.junctions:
-                    junc.pattern = uid
-            else:
+            if uid not in self.patterns.uid:
                 raise KeyError("Chosen pattern id doesn't exist")
         else:
-            self.add_pattern(uid, values)
-            for junc in self.junctions:
+            if uid in self.patterns.uid:
+                self.patterns[uid].values = values
+            else:
+                self.add_pattern(uid, values)
+        if junctions is not None:
+            for junc in junctions:
                 junc.pattern = uid
 
     def demand_model_summary(self):
@@ -96,6 +100,7 @@ class WaterDistributionNetwork(epynet.Network):
         curr_time = 0
         timestep = 1
 
+        pbar = tqdm(total=self.ep.ENgettimeparam(0))
         # timestep becomes 0 the last hydraulic step
         while timestep > 0:
             timestep, state = self.simulate_step(curr_time=curr_time, actuators_status=actuators_update_dict)
@@ -107,13 +112,17 @@ class WaterDistributionNetwork(epynet.Network):
             # TODO: remember to comment in DHALSIM
             # if timestep != 0 and self.interactive:
             #    self.update_actuators_status()
+            sleep(0.1)
+            pbar.update(timestep)
 
+        pbar.close()
         self.ep.ENcloseH()
+        self.solved = True
         self.create_df_reports()
 
     def init_simulation(self, interactive=False):
         """
-         Initialiaze the network simulation
+         Initialize the network simulation
         """
         self.interactive = interactive
         self.reset()

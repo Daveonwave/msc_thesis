@@ -155,4 +155,7 @@ $RECYCLE.BIN/
 *.rpt
 .towns/*.rpt
 
+# demand_generation
+demand_generation/*
+
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,jupyternotebooks,windows

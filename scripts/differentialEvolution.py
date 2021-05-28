@@ -1,6 +1,8 @@
 import time
 import datetime
 from tqdm import tqdm
+import csv
+import pandas as pd
 import numpy as np
 from scripts import network
 from scripts import objFunction
@@ -13,6 +15,12 @@ class DifferentialEvolution:
         Initializes differential evolution and simulation handling parameters
         :param wds: water distribution network
         :param obj_func: function to maximize
+        :param vars_list: control variables ids (pumps and valves)
+        :param n_pop: population amount
+        :param n_generations: number of desired generations
+        :param CR: cross-probability factor for recombination
+        :param F: mutation factor
+        :param info: descriptive annotation to specify the result file
         """
         self.wds = wds
         self.obj_func = obj_func
@@ -29,7 +37,10 @@ class DifferentialEvolution:
 
         self.best_candidate = {'config': {}, 'value': 0}
         self.population = []
-        self.best_population = []
+        self.last_population = []
+        self.results_file = ''
+        self.save_results = False
+        self.start_time = 0
 
     def populate(self):
         """
@@ -41,30 +52,54 @@ class DifferentialEvolution:
         population = [np.random.randint(2, size=self.n_updates * len(self.vars_list)) for i in range(self.n_pop)]
         return population
 
-    def run(self, duration=86400, hyd_step = 600, update_interval=14400, n_simulations=1, keep_same_pop=False):
+    def run(self, duration=86400, hyd_step = 600, update_interval=14400, n_simulations=1, keep_same_pop=False,
+            save_results=False, info=''):
         """
-        :param duration:
-        :param update_interval:
-        :param n_simulations:
-        :param keep_same_pop:
-        :return:
+        Wrapper method of the real run to set the configuration of the current DE simulation
+        :param duration: duration of the simulation
+        :param hyd_step: hydraulic step
+        :param update_interval: time interval between each update
+        :param n_simulations: number of successive simulations (e.g. 7 if we want to simulate a week)
+        :param keep_same_pop: to keep the best population from the previous simulation
+        :param save_results: flag which specifies if save or not results
+        :param info: descriptive annotation on saved file
         """
         self.duration = duration
         self.hyd_step = hyd_step
         self.update_interval = update_interval
+        self.save_results = save_results
+        if self.save_results:
+            self.create_output_file(info)
+        self.start_time = time.time()
+
+        patterns_uid = set([pattern.uid for pattern in self.wds.junctions.pattern])
 
         # If we want to run multiple serial simulations (for example, a week with one day duration each)
         if n_simulations > 1:
             for i in range(n_simulations):
+                if self.save_results:
+                    self.write_file('DAY ' + str(i + 1) + '\n')
+                print('DAY ' + str(i + 1) + ':')
+
                 # Keep the last computed pop_dict from the day before
-                if not keep_same_pop:
+                if keep_same_pop:
+                    if not self.last_population:
+                        self.last_population = self.populate()
+                    self.__run(self.last_population)
+                    self.last_population = self.population
+                else:
                     pop = self.populate()
                     self.__run(pop)
-                else:
-                    self.__run(self.best_population)
-                    self.best_population = self.population
-                # save_results()
 
+                if i < n_simulations - 1:
+                    for uid in patterns_uid:
+                        # print(self.wds.patterns[uid].values[:24])
+                        self.wds.set_demand_pattern(uid, self.wds.patterns[uid].values[24:])
+                        # print(self.wds.patterns[uid].values[:24])
+
+                self.best_candidate = {'config': {}, 'value': 0}
+                if self.save_results:
+                    self.write_file('---------------------------------\n')
         # Runs only one simulation (for example, just one day)
         else:
             pop = self.populate()
@@ -72,37 +107,50 @@ class DifferentialEvolution:
 
     def __run(self, pop):
         """
-        Runs differential evolution algorithm
+        Runs one simulation of the differential evolution algorithm
+        :param pop: population of the current simulation
         :return:
         """
         self.wds.set_time_params(duration=self.duration, hydraulic_step=self.hyd_step)
-        start_time = time.time()
 
         self.population = pop
         # while iteration < max_iterations:
         for i in range(self.n_generations):
             # for individual in population:
-            print("> STARTING GENERATION " + str(i) + ": ...")
+            if self.save_results:
+                self.write_file("Generation " + str(i + 1) + ':\n')
+            print("> STARTING GENERATION " + str(i + 1) + ": ...")
+
+            # TODO: pbar = progress bar, delete all prints
             for k, target in enumerate(self.population):
                 mutant = self.mutatation(k)
                 candidate = self.recombination(target, mutant)
                 if self.selection(target, candidate):
                     self.population[k] = candidate
-                print(" ----- Elapsed time [{}] -----".format(datetime.timedelta(seconds=time.time() - start_time)))
+                print(" ----- Elapsed time [{}] -----".format(datetime.timedelta(seconds=time.time() - self.start_time)))
                 # TODO: DE stopping conditions
+
             print("> GENERATION DONE!")
+            print("> ------------------------------------------------")
             print("> Best generation member: " + str(self.best_candidate['config']))
             print("> Best generation value: " + str(self.best_candidate['value']))
+            print("> ------------------------------------------------")
 
-        print("Best candidate: " + str(self.best_candidate['config']))
-        print("Best candidate value: " + str(self.best_candidate['value']))
+            if self.save_results:
+                self.write_file("> Best candidate: " + str(self.best_candidate['config']) + '\n')
+                self.write_file("> Best candidate value: " + str(self.best_candidate['value']) + '\n')
+
+        print('\n')
+        print("Best simulation candidate: " + str(self.best_candidate['config']))
+        print("Best simulation candidate value: " + str(self.best_candidate['value']))
+        print('\n')
 
     def mutatation(self, k):
         """
         Compute the new mutant by using binary mutation as explained in Gong-Tuson paper on BDE.
         # TODO: check if iBDE mutation explained by Doerr-Zheng works better
-        :param index:
-        :return:
+        :param k: target index of the population list
+        :return: mutated candidate
         """
         pop_range = [idx for idx in range(self.n_pop) if idx != k]
         idx_selection = np.random.choice(pop_range, 3, replace=False)
@@ -121,7 +169,9 @@ class DifferentialEvolution:
     def recombination(self, target, mutant):
         """
         Binomial recombination step. TODO: check with exponential
-        :return:
+        :param target: target (or parent) candidate
+        :param mutant: mutated (or child) candidate
+        :return: recombined candidate
         """
         # Binomial strategy
         cross_vars = np.random.rand(len(target)) <= self.CR
@@ -131,9 +181,9 @@ class DifferentialEvolution:
     def selection(self, target, candidate):
         """
         Selects which candidate is the better one after the evaluation phase
-        :param target:
-        :param candidate:
-        :return:
+        :param target: target (or parent) candidate
+        :param candidate: mutated and recombined (or child) candidate
+        :return: flag to understand if keep the old candidate or substitute him with the new one
         """
         parent = {}
         child = {}
@@ -155,13 +205,13 @@ class DifferentialEvolution:
             update_pop = True
             # Update the best candidate with the new candidate
             if child_value > self.best_candidate['value']:
-                self.best_candidate['config'] = candidate
+                self.best_candidate['config'] = child
                 self.best_candidate['value'] = child_value
                 print('    -> NEW BEST CANDIDATE FOUND!')
         else:
             # Update the best candidate with the old target
             if parent_value > self.best_candidate['value']:
-                self.best_candidate['config'] = target
+                self.best_candidate['config'] = parent
                 self.best_candidate['value'] = parent_value
                 print('    -> NEW BEST CANDIDATE FOUND!')
         print('    --> Substitution: {}'.format(update_pop))
@@ -170,8 +220,8 @@ class DifferentialEvolution:
     def evaluation(self, candidate):
         """
         Wrapper method which runs the simulation and evaluation with the current candidate
-        :param vars_list:
-        :return:
+        :param candidate: current candidate to be evaluated
+        :return: objective function value
         """
         self.simulate_episode(candidate)
         return self.obj_func(self.wds, self.vars_list)
@@ -180,7 +230,6 @@ class DifferentialEvolution:
         """
         Run a complete simulation of the entire duration to evaluate the current candidate
         :param candidate: dictionary of pumps with, as values, the list of their updates
-        :return:
         """
         self.wds.init_simulation()
         curr_time = 0
@@ -193,8 +242,8 @@ class DifferentialEvolution:
 
         # timestep becomes 0 the last hydraulic step
         while timestep > 0:
-            # Check if it's needed an update
-            if update_time > self.update_interval:
+            # Check if it's needed an update (second condition is to avoid the last update on curr_time == duration)
+            if update_time >= self.update_interval and not (curr_time > self.duration - self.update_interval):
                 update_index = curr_time // self.update_interval
                 new_status = {pump_id: candidate[pump_id][update_index] for pump_id in candidate.keys()}
                 # new status= {'PU1':1, 'PU2':0}
@@ -208,23 +257,47 @@ class DifferentialEvolution:
 
         self.wds.ep.ENcloseH()
         self.wds.solved = True
-        # TODO: check if it is faster without reports and only with result series
         self.wds.create_df_reports()
+
+    def create_output_file(self, info):
+        """
+        Creates new results file
+        :param info: descriptive annotation to specify the kind of simulation
+        """
+        results_folder = "../results/DE/"
+        filename = datetime.datetime.now().strftime("%Y_%m_%d-%I_%M_%S_%p_") + info + '.txt'
+        self.results_file = results_folder + filename
+
+    def write_file(self, what_to_write):
+        """
+        Writes on the results file one row at time
+        :param what_to_write: string to write
+        """
+        with open(self.results_file, 'a') as fd:
+            fd.write(what_to_write)
 
 
 if __name__ == '__main__':
     DE_params = {
         'vars_list': ['78', '79'],
         # 'vars_list': ['PU1', 'PU2'],
-        'n_pop': 20,
-        'n_generations': 5,
+        'n_pop': 5,
+        'n_generations': 1,
         'CR': 0.7,
         'F': 0.5
     }
 
     net = network.WaterDistributionNetwork("anytown_pd.inp")
-    de = DifferentialEvolution(net, objFunction.supply_demand_ratio, **DE_params)
-    duration = 86400
-    hyd_step = 600
-    update_interval = 14400
-    de.run(duration, hyd_step, update_interval)
+    de = DifferentialEvolution(net, objFunction.step_supply_demand_ratio, **DE_params)
+
+    pattern_csv = "../demand_patterns/demands_anytown.csv"
+    junc_demands = pd.read_csv(pattern_csv, names=['multipliers'])
+
+    net.set_demand_pattern('junc_demand', junc_demands.values, net.junctions)
+
+    days = 3
+    duration = 24 * 3600        # 1 day
+    hyd_step = 600              # 10 min
+    update_interval = 3600 * 4  # 4 hours
+
+    de.run(duration, hyd_step, update_interval, days)

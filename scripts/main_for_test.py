@@ -4,9 +4,10 @@ if __name__ == '__main__':
 
     # Trials modifying init tanks level
     net = network.WaterDistributionNetwork("anytown_pd.inp")
-    net.set_time_params(duration=3600, hydraulic_step=300)
+    net.set_time_params(duration=86400, hydraulic_step=600)
     # print(net.tanks.tanklevel)
     net.run()
+    objFunction.step_supply_demand_ratio(net, ['78','79'])
     exit(0)
 
     net.demand_model_summary()

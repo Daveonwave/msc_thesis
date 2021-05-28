@@ -4,36 +4,11 @@ import datetime
 
 def supply_demand_ratio(wds: network.WaterDistributionNetwork, driven_links):
     """
-    Computes the supply/demand objective function at the end of the simulation (for DE algorithm)
-    :param wds: network object
-    :param driven_links: TODO: understand if we need to consider all links or only some pumps (PU1, PU2)
-    :return: value of the objective function for the current simulation
+    Computes the ratio between the total delivered and total requested water
+    :param wds: network we are working on
+    :param driven_links: actuators list
+    :return: the objective function value
     """
-    if not wds.solved:
-        return -1
-
-    # Requested and delivered total water
-    tot_r = 0
-    tot_d = 0
-
-    # Transform wds.times (which are in seconds) to timedelta values
-    times = [datetime.timedelta(seconds=time) for time in wds.times]
-    for time in times:
-        # TODO: check if we need actually the demand or something else
-        r_demand = sum([wds.df_nodes_report.loc[time]['junctions', junc_id, 'demand'].sum() for junc_id in wds.junctions.uid])
-        d_demand = sum([wds.df_links_report.loc[time][:, link_id, 'flow'].sum() for link_id in driven_links])
-        #print(r_demand)
-        #print(d_demand)
-        tot_r = tot_r + r_demand
-        tot_d = tot_d + d_demand
-
-    print(tot_r)
-    print(tot_d)
-    ratio = tot_d / tot_r
-    return ratio
-
-
-def supply_demand_ratio2(wds: network.WaterDistributionNetwork, driven_links):
     if not wds.solved:
         return -1
 
@@ -41,10 +16,37 @@ def supply_demand_ratio2(wds: network.WaterDistributionNetwork, driven_links):
     tot_requested = sum([wds.df_nodes_report['junctions', junc_id, 'demand'].sum() for junc_id in wds.junctions.uid])
     tot_delivered = sum([wds.df_links_report['pumps', link_id, 'flow'].sum() for link_id in driven_links])
 
-    #print(tot_requested)
-    #print(tot_delivered)
     ratio = tot_delivered / tot_requested
     return ratio
+
+
+def step_supply_demand_ratio(wds: network.WaterDistributionNetwork, driven_links):
+    """
+    Computes the ratio between the delivered and requested water at each step and average it, without considering the
+    first two iterations which only stabilize the network
+    :param wds: network we are working on
+    :param driven_links: actuators list
+    :return: the objective function value
+    """
+    if not wds.solved:
+        return -1
+
+    ratios = []
+    demands = []
+    flows = []
+
+    for time in wds.df_links_report.index:
+        demand = sum([wds.df_nodes_report.loc[time]['junctions', junc_id, 'demand'] for junc_id in wds.junctions.uid])
+        flow = sum([wds.df_links_report.loc[time]['pumps', pump_id, 'flow'] for pump_id in driven_links])
+        demands.append(demand)
+        flows.append(flow)
+        ratios.append(flow / demand)
+    print('flows    : ' + str(flows ))
+    print('demands  : ' + str(demands))
+    print('ratios   : ' + str(ratios))
+    # print(ratios[2:])
+    # print(sum(ratios[2:]) / (len(ratios) - 2))
+    return sum(ratios[2:]) / (len(ratios) - 2)
 
 
 def energy_consumption(wds: network.WaterDistributionNetwork):

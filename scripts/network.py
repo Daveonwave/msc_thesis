@@ -7,7 +7,7 @@ from scripts import epynetUtils
 
 # TODO: remove global variables
 actuators_update_dict = {}
-step_count = 0
+# step_count = 0
 
 
 class WaterDistributionNetwork(epynet.Network):
@@ -100,7 +100,7 @@ class WaterDistributionNetwork(epynet.Network):
         curr_time = 0
         timestep = 1
 
-        pbar = tqdm(total=self.ep.ENgettimeparam(0))
+        progress_bar = tqdm(total=self.ep.ENgettimeparam(0))
         # timestep becomes 0 the last hydraulic step
         while timestep > 0:
             timestep, state = self.simulate_step(curr_time=curr_time, actuators_status=actuators_update_dict)
@@ -112,10 +112,10 @@ class WaterDistributionNetwork(epynet.Network):
             # TODO: remember to comment in DHALSIM
             # if timestep != 0 and self.interactive:
             #    self.update_actuators_status()
-            sleep(0.1)
-            pbar.update(timestep)
+            sleep(0.01)
+            progress_bar.update(timestep)
 
-        pbar.close()
+        progress_bar.close()
         self.ep.ENcloseH()
         self.solved = True
         self.create_df_reports()
@@ -157,11 +157,11 @@ class WaterDistributionNetwork(epynet.Network):
         :param new_status: will be used in future with RL
         TODO: update with new_status and remove step_count
         """
-        global step_count
+        # global step_count
         for uid in new_status.keys():
             # self.links[uid].status = new_status[uid][step_count % 2]
             self.links[uid].status = new_status[uid]
-        step_count += 1
+        # step_count += 1
 
     def get_network_state(self):
         """

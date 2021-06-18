@@ -1,0 +1,119 @@
+DAY 1
+Generation 1:
+> Best candidate: {'78': array([1, 0, 1, 1, 1, 1]), '79': array([1, 1, 1, 1, 0, 0])}
+> Best candidate value: 0.8790743677467173
+Generation 2:
+> Best candidate: {'78': array([1, 1, 0, 1, 1, 1]), '79': array([0, 1, 1, 1, 1, 0])}
+> Best candidate value: 0.8871992251985958
+Generation 3:
+> Best candidate: {'78': array([1, 1, 1, 1, 0, 1]), '79': array([0, 1, 1, 1, 1, 1])}
+> Best candidate value: 0.8961375423145097
+Generation 4:
+> Best candidate: {'78': array([1, 1, 1, 1, 0, 1]), '79': array([0, 1, 1, 1, 1, 1])}
+> Best candidate value: 0.8961375423145097
+Generation 5:
+> Best candidate: {'78': array([1, 1, 1, 1, 0, 1]), '79': array([0, 1, 1, 1, 1, 1])}
+> Best candidate value: 0.8961375423145097
+---------------------------------
+DAY 2
+Generation 1:
+> Best candidate: {'78': array([1, 0, 1, 1, 1, 1]), '79': array([1, 1, 0, 1, 1, 1])}
+> Best candidate value: 0.8925042191402329
+Generation 2:
+> Best candidate: {'78': array([1, 0, 1, 1, 1, 1]), '79': array([1, 1, 0, 1, 1, 1])}
+> Best candidate value: 0.8925042191402329
+Generation 3:
+> Best candidate: {'78': array([1, 0, 1, 1, 1, 1]), '79': array([1, 1, 0, 1, 1, 1])}
+> Best candidate value: 0.8925042191402329
+Generation 4:
+> Best candidate: {'78': array([1, 0, 1, 1, 0, 1]), '79': array([1, 1, 1, 1, 1, 1])}
+> Best candidate value: 0.8931615321432774
+Generation 5:
+> Best candidate: {'78': array([0, 1, 1, 1, 1, 1]), '79': array([1, 0, 1, 1, 1, 1])}
+> Best candidate value: 0.9014114973812274
+---------------------------------
+DAY 3
+Generation 1:
+> Best candidate: {'78': array([0, 1, 1, 0, 1, 1]), '79': array([1, 0, 1, 1, 0, 0])}
+> Best candidate value: 0.8828227267593943
+Generation 2:
+> Best candidate: {'78': array([1, 0, 1, 1, 1, 1]), '79': array([0, 1, 1, 0, 1, 0])}
+> Best candidate value: 0.8935992460132565
+Generation 3:
+> Best candidate: {'78': array([1, 0, 1, 1, 1, 1]), '79': array([0, 1, 1, 0, 1, 0])}
+> Best candidate value: 0.8935992460132565
+Generation 4:
+> Best candidate: {'78': array([1, 1, 1, 0, 1, 1]), '79': array([1, 1, 1, 1, 1, 1])}
+> Best candidate value: 0.9115656714787879
+Generation 5:
+> Best candidate: {'78': array([1, 0, 1, 1, 1, 1]), '79': array([1, 1, 1, 1, 1, 1])}
+> Best candidate value: 0.9135978874639157
+---------------------------------
+DAY 4
+Generation 1:
+> Best candidate: {'78': array([1, 1, 1, 1, 0, 1]), '79': array([0, 1, 1, 0, 1, 1])}
+> Best candidate value: 0.8962905717655586
+Generation 2:
+> Best candidate: {'78': array([1, 1, 1, 1, 1, 1]), '79': array([0, 1, 1, 0, 1, 1])}
+> Best candidate value: 0.9073789848445041
+Generation 3:
+> Best candidate: {'78': array([1, 1, 1, 1, 1, 1]), '79': array([0, 1, 1, 0, 1, 1])}
+> Best candidate value: 0.9073789848445041
+Generation 4:
+> Best candidate: {'78': array([1, 1, 1, 1, 1, 1]), '79': array([0, 1, 1, 0, 1, 1])}
+> Best candidate value: 0.9073789848445041
+Generation 5:
+> Best candidate: {'78': array([1, 1, 1, 1, 1, 1]), '79': array([0, 1, 1, 0, 1, 1])}
+> Best candidate value: 0.9073789848445041
+---------------------------------
+DAY 5
+Generation 1:
+> Best candidate: {'78': array([0, 1, 1, 0, 1, 1]), '79': array([1, 1, 1, 1, 1, 1])}
+> Best candidate value: 0.9166212125162851
+Generation 2:
+> Best candidate: {'78': array([0, 1, 1, 1, 1, 1]), '79': array([1, 1, 1, 1, 1, 0])}
+> Best candidate value: 0.9207957827035889
+Generation 3:
+> Best candidate: {'78': array([0, 1, 1, 1, 1, 1]), '79': array([1, 1, 1, 1, 1, 0])}
+> Best candidate value: 0.9207957827035889
+Generation 4:
+> Best candidate: {'78': array([0, 1, 1, 1, 1, 1]), '79': array([1, 1, 1, 1, 1, 0])}
+> Best candidate value: 0.9207957827035889
+Generation 5:
+> Best candidate: {'78': array([1, 1, 1, 1, 1, 1]), '79': array([1, 1, 1, 1, 1, 1])}
+> Best candidate value: 0.9281922696984192
+---------------------------------
+DAY 6
+Generation 1:
+> Best candidate: {'78': array([0, 1, 1, 1, 1, 0]), '79': array([1, 0, 1, 1, 1, 1])}
+> Best candidate value: 0.9012063341681429
+Generation 2:
+> Best candidate: {'78': array([0, 1, 1, 1, 1, 1]), '79': array([1, 1, 1, 0, 1, 1])}
+> Best candidate value: 0.9062097687402905
+Generation 3:
+> Best candidate: {'78': array([0, 1, 1, 1, 1, 1]), '79': array([1, 1, 1, 0, 1, 1])}
+> Best candidate value: 0.9062097687402905
+Generation 4:
+> Best candidate: {'78': array([0, 1, 1, 1, 1, 1]), '79': array([1, 1, 1, 0, 1, 1])}
+> Best candidate value: 0.9062097687402905
+Generation 5:
+> Best candidate: {'78': array([0, 1, 1, 1, 1, 1]), '79': array([1, 1, 1, 0, 1, 1])}
+> Best candidate value: 0.9062097687402905
+---------------------------------
+DAY 7
+Generation 1:
+> Best candidate: {'78': array([1, 1, 1, 1, 0, 1]), '79': array([1, 1, 1, 1, 1, 1])}
+> Best candidate value: 0.917161217924521
+Generation 2:
+> Best candidate: {'78': array([1, 1, 1, 1, 0, 1]), '79': array([1, 1, 1, 1, 1, 1])}
+> Best candidate value: 0.917161217924521
+Generation 3:
+> Best candidate: {'78': array([1, 1, 1, 1, 0, 1]), '79': array([1, 1, 1, 1, 1, 1])}
+> Best candidate value: 0.917161217924521
+Generation 4:
+> Best candidate: {'78': array([1, 1, 1, 1, 1, 1]), '79': array([1, 0, 1, 1, 1, 1])}
+> Best candidate value: 0.9199383951882464
+Generation 5:
+> Best candidate: {'78': array([1, 1, 1, 1, 1, 1]), '79': array([0, 1, 1, 1, 1, 1])}
+> Best candidate value: 0.9260599317882628
+---------------------------------

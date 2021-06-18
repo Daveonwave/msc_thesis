@@ -167,7 +167,9 @@ class EPANET2(object):
                       EN_MINLEVEL    Minimum water level
                       EN_MAXLEVEL    Maximum water level
                       EN_MIXFRACTION Fraction of total volume occupied by the inlet/outlet zone in a 2-compartment tank
-                      EN_TANK_KBULK  Bulk reaction rate coefficient"""
+                      EN_TANK_KBULK  Bulk reaction rate coefficient
+                      EN_DEMANDDEFICIT Amount that full demand is reduced under PDA (read only)
+                      """
         j= ctypes.c_float()
         ierr= self._lib.EN_getnodevalue(self.ph, index, paramcode, ctypes.byref(j))
         if ierr!=0: raise ENtoolkitError(self, ierr)
@@ -973,6 +975,7 @@ EN_MINLEVEL      = 20
 EN_MAXLEVEL      = 21
 EN_MIXFRACTION   = 22
 EN_TANK_KBULK    = 23
+EN_DEMANDDEFICIT = 27
 
 EN_DIAMETER      = 0      # /* Link parameters */
 EN_LENGTH        = 1

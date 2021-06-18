@@ -10,11 +10,13 @@ from scripts import objFunction
 
 class DifferentialEvolution:
 
-    def __init__(self, wds: network.WaterDistributionNetwork, obj_func, vars_list, n_pop, n_generations, CR, F):
+    def __init__(self, wds: network.WaterDistributionNetwork, obj_func, objfunc_params, vars_list, n_pop, n_generations,
+                 CR, F):
         """
         Initializes differential evolution and simulation handling parameters
         :param wds: water distribution network
         :param obj_func: function to maximize
+        :param objfunc_params: parameters that have to be passed to the objective function
         :param vars_list: control variables ids (pumps and valves)
         :param n_pop: population amount
         :param n_generations: number of desired generations
@@ -24,6 +26,7 @@ class DifferentialEvolution:
         """
         self.wds = wds
         self.obj_func = obj_func
+        self.objfunc_params = objfunc_params
         self.vars_list = vars_list
         self.n_pop = n_pop
         self.n_generations = n_generations
@@ -35,7 +38,7 @@ class DifferentialEvolution:
         self.update_interval = 0
         self.n_updates = 0
 
-        self.best_candidate = {'config': {}, 'value': 0}
+        self.best_candidate = {'config': {}, 'value': float('-inf')}
         self.population = []
         self.last_population = []
         self.results_file = ''
@@ -63,6 +66,10 @@ class DifferentialEvolution:
         :param keep_same_pop: to keep the best population from the previous simulation
         :param save_results: flag which specifies if save or not results
         :param info: descriptive annotation on saved file
+
+        How it works with patterns: we need to assign our demand patters of a week in the main function, then they will
+        be taken 24 at time, since we consider multipliers last 1 hour.
+        If we want a different pattern step we have to change a bit the function and generate appropriate patterns.
         """
         self.duration = duration
         self.hyd_step = hyd_step
@@ -81,7 +88,7 @@ class DifferentialEvolution:
                     self.write_file('DAY ' + str(i + 1) + '\n')
                 print('DAY ' + str(i + 1) + ':')
 
-                # Keep the last computed pop_dict from the day before
+                # Keep the last computed population from the day before
                 if keep_same_pop:
                     if not self.last_population:
                         self.last_population = self.populate()
@@ -93,9 +100,8 @@ class DifferentialEvolution:
 
                 if i < n_simulations - 1:
                     for uid in patterns_uid:
-                        # print(self.wds.patterns[uid].values[:24])
+                        # TODO: we should allow to modify the pattern step (here is 1 hour)
                         self.wds.set_demand_pattern(uid, self.wds.patterns[uid].values[24:])
-                        # print(self.wds.patterns[uid].values[:24])
 
                 self.best_candidate = {'config': {}, 'value': 0}
                 if self.save_results:
@@ -224,7 +230,10 @@ class DifferentialEvolution:
         :return: objective function value
         """
         self.simulate_episode(candidate)
-        return self.obj_func(self.wds, self.vars_list)
+        if self.objfunc_params:
+            return self.obj_func(self.wds, **self.objfunc_params)
+        else:
+            return self.obj_func(self.wds)
 
     def simulate_episode(self, candidate):
         """
@@ -257,7 +266,7 @@ class DifferentialEvolution:
 
         self.wds.ep.ENcloseH()
         self.wds.solved = True
-        self.wds.create_df_reports()
+        # self.wds.create_df_reports()
 
     def create_output_file(self, info):
         """
@@ -278,26 +287,38 @@ class DifferentialEvolution:
 
 
 if __name__ == '__main__':
+    objfunc_params = {
+        'target_nodes': ['1', '2', '3'],
+        'nodes_band': {'1': [50, 100],
+                       '2': [60, 90],
+                       '3': [40, 60]
+                       }
+    }
+    objfunc_params = None
+
     DE_params = {
         'vars_list': ['78', '79'],
         # 'vars_list': ['PU1', 'PU2'],
-        'n_pop': 5,
+        # 'vars_list': ['X_Pump_1', 'X_Pump_2', 'X_Pump_3', 'X_Pump_4', 'X_Pump_5'],
+        'n_pop': 4,
         'n_generations': 1,
         'CR': 0.7,
         'F': 0.5
     }
 
     net = network.WaterDistributionNetwork("anytown_pd.inp")
-    de = DifferentialEvolution(net, objFunction.step_supply_demand_ratio, **DE_params)
+    de = DifferentialEvolution(net, objFunction.supply_demand_ratio, objfunc_params, **DE_params)
 
     pattern_csv = "../demand_patterns/demands_anytown.csv"
     junc_demands = pd.read_csv(pattern_csv, names=['multipliers'])
 
     net.set_demand_pattern('junc_demand', junc_demands.values, net.junctions)
 
-    days = 3
+    len(net.patterns['junc_demand'].values)
+
+    days = 7
     duration = 24 * 3600        # 1 day
     hyd_step = 600              # 10 min
     update_interval = 3600 * 4  # 4 hours
 
-    de.run(duration, hyd_step, update_interval, days)
+    de.run(duration, hyd_step, update_interval, n_simulations=days, save_results=False, keep_same_pop=True)

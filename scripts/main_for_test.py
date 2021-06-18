@@ -1,13 +1,22 @@
 if __name__ == '__main__':
     from scripts import network, epynetUtils, objFunction, differentialEvolution
+    import pandas as pd
     import datetime
 
-    # Trials modifying init tanks level
-    net = network.WaterDistributionNetwork("anytown_pd.inp")
-    net.set_time_params(duration=86400, hydraulic_step=600)
-    # print(net.tanks.tanklevel)
+    net = network.WaterDistributionNetwork("ctown_pd.inp")
+    # Put report step equal to hyd_step because if it is lower it leads the timestep interval
+    net.set_time_params(duration=3600*12, hydraulic_step=1200, report_step=1200)
+
+    pattern_csv = "../demand_patterns/demands_anytown.csv"
+    junc_demands = pd.read_csv(pattern_csv, names=['junc_demand'])
+    pattern_dict = {col_name: junc_demands[col_name].values for col_name in junc_demands.columns}
+    # net.set_demand_pattern('junc_demand', junc_demands.values, net.junctions)
+
     net.run()
-    objFunction.step_supply_demand_ratio(net, ['78','79'])
+    print(net.df_nodes_report['junctions'])
+
+    ratio = objFunction.average_demand_deficit(net)
+    print(ratio)
     exit(0)
 
     net.demand_model_summary()

@@ -1192,8 +1192,9 @@ LINK          PU11 CLOSED IF              NODE          T7            ABOVE     
  Quality Timestep   	0:05 
  Pattern Timestep   	1:00 
  Pattern Start      	0:00 
- Report Timestep    	0:05 
- Report Start       	0:00 
+ ;Report Timestep    	0:05
+ Report Timestep    	0:00
+ Report Start       	0:00
  Start ClockTime    	0:00:00
  Statistic          	NONE
 

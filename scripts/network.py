@@ -60,7 +60,7 @@ class WaterDistributionNetwork(epynet.Network):
                 self.patterns[uid].values = values
             else:
                 self.add_pattern(uid, values)
-        if junctions is not None:
+        if junctions:
             for junc in junctions:
                 junc.pattern = uid
 
@@ -201,8 +201,8 @@ class WaterDistributionNetwork(epynet.Network):
 
         tanks_ids = [uid for uid in self.tanks.uid]
         junctions_ids = [uid for uid in self.junctions.uid]
-        tanks_iterables = [['tanks'], tanks_ids, ['head', 'pressure', 'demand']]
-        junct_iterables = [['junctions'], junctions_ids, ['head', 'pressure', 'demand']]
+        tanks_iterables = [['tanks'], tanks_ids, ['head', 'pressure']]
+        junct_iterables = [['junctions'], junctions_ids, ['head', 'pressure', 'basedemand', 'actual_demand', 'demand_deficit']]
         tanks_indices = pd.MultiIndex.from_product(iterables=tanks_iterables, names=["node", "id", "properties"])
         junctions_indices = pd.MultiIndex.from_product(iterables=junct_iterables, names=["node", "id", "properties"])
 

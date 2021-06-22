@@ -2,7 +2,7 @@ import epynet
 import pandas as pd
 import datetime
 #from scripts import utils
-import utils
+import epynet_utils
 
 # TODO: remove global variables
 actuators_update_dict = {}
@@ -30,17 +30,17 @@ class WaterDistributionNetwork(epynet.Network):
         :param rule_step: EN_RULESTEP
         """
         if duration is not None:
-            self.ep.ENsettimeparam(utils.get_time_param_code('EN_DURATION'), duration)
+            self.ep.ENsettimeparam(epynet_utils.get_time_param_code('EN_DURATION'), duration)
         if hydraulic_step is not None:
-            self.ep.ENsettimeparam(utils.get_time_param_code('EN_HYDSTEP'), hydraulic_step)
+            self.ep.ENsettimeparam(epynet_utils.get_time_param_code('EN_HYDSTEP'), hydraulic_step)
         if pattern_step is not None:
-            self.ep.ENsettimeparam(utils.get_time_param_code('EN_PATTERNSTEP'), pattern_step)
+            self.ep.ENsettimeparam(epynet_utils.get_time_param_code('EN_PATTERNSTEP'), pattern_step)
         if report_step is not None:
-            self.ep.ENsettimeparam(utils.get_time_param_code('EN_REPORTSTEP'), report_step)
+            self.ep.ENsettimeparam(epynet_utils.get_time_param_code('EN_REPORTSTEP'), report_step)
         if start_time is not None:
-            self.ep.ENsettimeparam(utils.get_time_param_code('EN_STARTTIME'), start_time)
+            self.ep.ENsettimeparam(epynet_utils.get_time_param_code('EN_STARTTIME'), start_time)
         if rule_step is not None:
-            self.ep.ENsettimeparam(utils.get_time_param_code('EN_RULESTEP'), rule_step)
+            self.ep.ENsettimeparam(epynet_utils.get_time_param_code('EN_RULESTEP'), rule_step)
 
     def set_demand_pattern(self, uid: str, values=None):
         """
@@ -53,11 +53,15 @@ class WaterDistributionNetwork(epynet.Network):
                 for junc in self.junctions:
                     junc.pattern = uid
             else:
-                raise KeyError("Chosen pattern id doesn't exist")
+                raise KeyError("Chosen patte    rn id doesn't exist")
         else:
-            self.add_pattern(uid, values)
-            for junc in self.junctions:
-                junc.pattern = uid
+
+            if uid in self.patterns.uid:
+                self.patterns[uid].values = values
+            else:
+                self.add_pattern(uid, values)
+                for junc in self.junctions:
+                    junc.pattern = uid
 
     def demand_model_summary(self):
         """
@@ -150,13 +154,15 @@ class WaterDistributionNetwork(epynet.Network):
         :param new_status: will be used in future with RL
         TODO: update with new_status and remove step_count
         """
-        global step_count
+        #global step_count
         for uid in self.pumps.uid:
-            self.pumps[uid].status = new_status[uid][step_count % 2]
+            #self.pumps[uid].status = new_status[uid][step_count % 2]
+            self.pumps[uid].status = new_status[uid]
         if self.valves:
             for uid in self.valves.uid:
-                self.valves[uid].status = new_status[uid][step_count % 2]
-        step_count += 1
+                #self.valves[uid].status = new_status[uid][step_count % 2]
+                self.valves[uid].status = new_status[uid]
+        #step_count += 1
 
     def get_network_state(self):
         """

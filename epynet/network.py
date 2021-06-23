@@ -380,8 +380,9 @@ class Network(object):
                     node.results['basedemand'] = []
                 # if pattern not set it takes the basedemand as it is
                 if node.basedemand > 0 and node.pattern.uid is not '1':
+                    pattern_step = self.ep.ENgettimeparam(3)
                     node.results['basedemand'].append(
-                        node.basedemand * node.pattern.values[simtime // self.ep.ENgettimeparam(3)])
+                        node.basedemand * node.pattern.values[(simtime // pattern_step) % len(node.pattern.values)])
                 else:
                     node.results['basedemand'].append(node.basedemand)
 

@@ -3,19 +3,25 @@ if __name__ == '__main__':
     import pandas as pd
     import datetime
 
-    net = network.WaterDistributionNetwork("ctown_pd.inp")
+    net = network.WaterDistributionNetwork("anytown_pd.inp")
     # Put report step equal to hyd_step because if it is lower it leads the timestep interval
-    net.set_time_params(duration=3600*12, hydraulic_step=1200, report_step=1200)
+    net.set_time_params(duration=3600*24*10, hydraulic_step=300, report_step=1200)
 
     pattern_csv = "../demand_patterns/demands_anytown.csv"
     junc_demands = pd.read_csv(pattern_csv, names=['junc_demand'])
     pattern_dict = {col_name: junc_demands[col_name].values for col_name in junc_demands.columns}
-    # net.set_demand_pattern('junc_demand', junc_demands.values, net.junctions)
+    net.set_demand_pattern('junc_demand', junc_demands.values, net.junctions)
 
-    net.run()
+    status = [1.0, 0.0]
+    if net.valves:
+        actuators_update_dict = {uid: status for uid in net.pumps.uid.append(net.valves.uid)}
+    else:
+        actuators_update_dict = {uid: status for uid in net.pumps.uid}
+
+    net.run(interactive=False, status_dict=actuators_update_dict)
     print(net.df_nodes_report['junctions'])
 
-    ratio = objFunction.average_demand_deficit(net)
+    ratio = objFunction.supply_demand_ratio(net)
     print(ratio)
     exit(0)
 

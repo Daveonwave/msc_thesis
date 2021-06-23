@@ -84,16 +84,15 @@ def supply_demand_ratio(wds: network.WaterDistributionNetwork, target_junctions=
 
     if target_junctions:
         for i, time in enumerate(wds.times):
-            actual_demand = sum([wds.junctions[junc_id].actual_demand.loc[time] for junc_id in target_junctions])
+            actual_demand = sum([wds.junctions[junc_id].actual_demand.loc[time] for junc_id in target_junctions ])
             basedemand = sum([wds.junctions[junc_id].results['basedemand'][i] for junc_id in target_junctions])
-            ratios.append(actual_demand / basedemand)
+            ratios.append(actual_demand/basedemand if actual_demand/basedemand <= 1 else float(1))
     else:
         for i, time in enumerate(wds.times):
             actual_demand = wds.junctions.actual_demand.loc[time].sum()
             basedemand = sum([wds.junctions[junc_id].results['basedemand'][i] for junc_id in wds.junctions.uid])
-            ratios.append(actual_demand / basedemand)
-
-    #print(ratios)
+            ratios.append(actual_demand/basedemand if actual_demand/basedemand <= 1 else float(1))
+            
     return sum(ratios) / len(ratios)
 
 

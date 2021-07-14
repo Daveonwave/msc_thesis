@@ -159,7 +159,7 @@ class EPANET2(object):
 
                    The following parameter codes apply only to storage tank nodes:
                       EN_INITVOLUME  Initial water volume
-                      EN_MIXMODEL    Mixing model code (see below)
+                      EN_MIXMODEL    Mixing saved_models code (see below)
                       EN_MIXZONEVOL  Inlet/Outlet zone volume in a 2-compartment tank
                       EN_TANKDIAM    Tank diameter
                       EN_MINVOLUME   Minimum water volume
@@ -458,7 +458,7 @@ class EPANET2(object):
                       EN_MINVOLUME     Minimum water volume
                       EN_MINLEVEL      Minimum water level
                       EN_MAXLEVEL      Maximum water level
-                      EN_MIXMODEL      Mixing model code
+                      EN_MIXMODEL      Mixing saved_models code
                       EN_MIXFRACTION   Fraction of total volume occupied by the inlet/outlet
                       EN_TANK_KBULK    Bulk reaction rate coefficient
         value:parameter value"""
@@ -915,8 +915,8 @@ class EPANET2(object):
 
     def ENgetdemandmodel(self):
         """
-        Retrieves the type of demand model in use and its parameters.
-        :returns dm_type: type of demand model (DDA or PDA)
+        Retrieves the type of demand saved_models in use and its parameters.
+        :returns dm_type: type of demand saved_models (DDA or PDA)
                  pmin:    pressure below which there is no demand
                  preq:    pressure required to deliver full demand
                  pexp:    pressure exponent in demand function
@@ -935,8 +935,8 @@ class EPANET2(object):
 
     def ENsetdemandmodel(self, dm_type, pmin, preq, pexp):
         """
-        Sets the type of demand model to use and its parameters
-        :param dm_type: type of demand model (DDA or PDA)
+        Sets the type of demand saved_models to use and its parameters
+        :param dm_type: type of demand saved_models (DDA or PDA)
         :param pmin: pressure below which there is no demand
         :param preq: pressure required to deliver full demand
         :param pexp: pressure exponent in demand function
@@ -1074,7 +1074,7 @@ EN_NOSAVE        = 0      # /* Save-results-to-file flag */
 EN_SAVE          = 1
 EN_INITFLOW      = 10     # /* Re-initialize flow flag   */
 
-EN_DDA           = 0      # /* Demand model types   */
+EN_DDA           = 0      # /* Demand saved_models types   */
 EN_PDA           = 1
 
 

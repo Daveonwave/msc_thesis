@@ -10,7 +10,7 @@ from scripts import objFunction
 
 class DifferentialEvolution:
 
-    def __init__(self, wds: network.WaterDistributionNetwork, obj_func, objfunc_params, vars_list, n_pop, n_generations,
+    def __init__(self, wn: network.WaterDistributionNetwork, obj_func, objfunc_params, vars_list, n_pop, n_generations,
                  CR, F):
         """
         Initializes differential evolution and simulation handling parameters
@@ -24,7 +24,7 @@ class DifferentialEvolution:
         :param F: mutation factor
         :param info: descriptive annotation to specify the result file
         """
-        self.wds = wds
+        self.wn = wn
         self.obj_func = obj_func
         self.objfunc_params = objfunc_params
         self.vars_list = vars_list
@@ -79,7 +79,7 @@ class DifferentialEvolution:
             self.create_output_file(info)
         self.start_time = time.time()
 
-        patterns_uid = set([pattern.uid for pattern in self.wds.junctions.pattern])
+        patterns_uid = set([pattern.uid for pattern in self.wn.junctions.pattern])
 
         # If we want to run multiple serial simulations (for example, a week with one day duration each)
         if n_simulations > 1:
@@ -101,7 +101,7 @@ class DifferentialEvolution:
                 if i < n_simulations - 1:
                     for uid in patterns_uid:
                         # TODO: we should allow to modify the pattern step (here is 1 hour)
-                        self.wds.set_demand_pattern(uid, self.wds.patterns[uid].values[24:])
+                        self.wn.set_demand_pattern(uid, self.wn.patterns[uid].values[24:])
 
                 self.best_candidate = {'config': {}, 'value': 0}
                 if self.save_results:
@@ -117,7 +117,7 @@ class DifferentialEvolution:
         :param pop: population of the current simulation
         :return:
         """
-        self.wds.set_time_params(duration=self.duration, hydraulic_step=self.hyd_step)
+        self.wn.set_time_params(duration=self.duration, hydraulic_step=self.hyd_step)
 
         self.population = pop
         # while iteration < max_iterations:
@@ -231,23 +231,23 @@ class DifferentialEvolution:
         """
         self.simulate_episode(candidate)
         if self.objfunc_params:
-            return self.obj_func(self.wds, **self.objfunc_params)
+            return self.obj_func(self.wn, **self.objfunc_params)
         else:
-            return self.obj_func(self.wds)
+            return self.obj_func(self.wn)
 
     def simulate_episode(self, candidate):
         """
         Run a complete simulation of the entire duration to evaluate the current candidate
         :param candidate: dictionary of pumps with, as values, the list of their updates
         """
-        self.wds.init_simulation()
+        self.wn.init_simulation()
         curr_time = 0
         update_time = 0
         timestep = 1
 
         # Initialize status of pumps with the first element in the update list of the candidate
         init_status = {pump_id: candidate[pump_id][0] for pump_id in candidate.keys()}
-        self.wds.update_actuators_status(init_status)
+        self.wn.update_actuators_status(init_status)
 
         # timestep becomes 0 the last hydraulic step
         while timestep > 0:
@@ -256,16 +256,16 @@ class DifferentialEvolution:
                 update_index = curr_time // self.update_interval
                 new_status = {pump_id: candidate[pump_id][update_index] for pump_id in candidate.keys()}
                 # new status= {'PU1':1, 'PU2':0}
-                self.wds.update_actuators_status(new_status)
+                self.wn.update_actuators_status(new_status)
                 update_time -= self.update_interval
 
             # Changed simulate_step method since it doesn't update status by itself
-            timestep, state = self.wds.simulate_step(curr_time=curr_time)
+            timestep, state = self.wn.simulate_step(curr_time=curr_time)
             curr_time += timestep
             update_time += timestep
 
-        self.wds.ep.ENcloseH()
-        self.wds.solved = True
+        self.wn.ep.ENcloseH()
+        self.wn.solved = True
         # self.wds.create_df_reports()
 
     def create_output_file(self, info):

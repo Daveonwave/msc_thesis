@@ -15,6 +15,7 @@ def lazy_property(fn):
         return self._values[attr_name]
     return _lazy_property
 
+
 class BaseObject(object):
 
     static_properties = {}

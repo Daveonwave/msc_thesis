@@ -5,12 +5,11 @@ if __name__ == '__main__':
 
     net = network.WaterDistributionNetwork("anytown_pd.inp")
     # Put report step equal to hyd_step because if it is lower it leads the timestep interval
-    net.set_time_params(duration=3600*24*10, hydraulic_step=300, report_step=1200)
+    net.set_time_params(duration=3600*24, hydraulic_step=300, report_step=1200)
 
     pattern_csv = "../demand_patterns/demands_anytown.csv"
-    junc_demands = pd.read_csv(pattern_csv, names=['junc_demand'])
-    pattern_dict = {col_name: junc_demands[col_name].values for col_name in junc_demands.columns}
-    net.set_demand_pattern('junc_demand', junc_demands.values, net.junctions)
+    junc_demands = pd.read_csv(pattern_csv)
+    net.set_demand_pattern('junc_demand', junc_demands['0'], net.junctions)
 
     status = [1.0, 0.0]
     if net.valves:
@@ -19,9 +18,17 @@ if __name__ == '__main__':
         actuators_update_dict = {uid: status for uid in net.pumps.uid}
 
     net.run(interactive=False, status_dict=actuators_update_dict)
-    print(net.df_nodes_report['junctions'])
+    # print(net.junctions.actual_demand.iloc[-1])
 
-    ratio = objFunction.supply_demand_ratio(net)
+    print(net.tanks.level)
+
+    total_basedemand = net.df_nodes_report.iloc[:, net.df_nodes_report.columns.get_level_values(2) == 'basedemand'].iloc[-1].sum()
+    total_demand = net.df_nodes_report.iloc[:, net.df_nodes_report.columns.get_level_values(2) == 'actual_demand'].iloc[-1].sum()
+    print('basedemand', total_basedemand)
+    print('demand', total_demand)
+    print('ratio', total_demand/total_basedemand)
+
+    ratio = objFunction.step_supply_demand_ratio(net)
     print(ratio)
     exit(0)
 

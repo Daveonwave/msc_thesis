@@ -17,6 +17,7 @@ class WaterDistributionNetwork(epynet.Network):
         self.df_nodes_report = None
         self.df_links_report = None
         self.times = []
+
         # Interactive flag can be set in run() or in init_simulation() if you want to build manually the step-by-step
         self.interactive = False
         self.network_state = pd.Series()
@@ -50,7 +51,7 @@ class WaterDistributionNetwork(epynet.Network):
         Set a base-demand pattern for junctions if exists, otherwise it creates and set a new pattern
         :param uid: pattern id
         :param values: list of multipliers, None if already existing
-        :param junctions: list of junctions to which we want to set the pattern
+        :param junctions: list of junction objects to which we want to set the pattern
         """
         if values is None:
             if uid not in self.patterns.uid:
@@ -66,7 +67,7 @@ class WaterDistributionNetwork(epynet.Network):
 
     def demand_model_summary(self):
         """
-        Print information related to the current demand model
+        Print information related to the current demand saved_models
         """
         dm_type, pmin, preq, pexp = self.ep.ENgetdemandmodel()
         if dm_type == 0:
@@ -84,6 +85,9 @@ class WaterDistributionNetwork(epynet.Network):
         :param status_dict: dictionary with predefined updates (just to test, it will be removed)
         TODO: remove status_dict
         """
+        if self.solved:
+            self.reset()
+
         global actuators_update_dict
         if status_dict and interactive:
             actuators_update_dict = status_dict
@@ -130,11 +134,12 @@ class WaterDistributionNetwork(epynet.Network):
         self.ep.ENopenH()
         self.ep.ENinitH(flag=0)
 
-    def simulate_step(self, curr_time, actuators_status=None):
+    def simulate_step(self, curr_time, actuators_status=None, get_state=True):
         """
         Simulation of one step from the given time
         :param actuators_status: dictionary with status update for actuators
         :param curr_time: current simulation time
+        :param get_state: flag to take the current state
         :return: time until the next event, if 0 the simulation is going to end
         """
         self.ep.ENrunH()
@@ -146,22 +151,32 @@ class WaterDistributionNetwork(epynet.Network):
 
         # update the status of actuators after the first step
         # TODO: DHALSIM works with the status update here
-        if actuators_status and self.interactive and timestep != 0:
-            self.update_actuators_status(actuators_status)
+        # if actuators_status and self.interactive and timestep != 0:
+        #    self.update_actuators_status(actuators_status)
 
-        return timestep, self.get_network_state()
+        if get_state:
+            return timestep, self.get_network_state()
+        else:
+            return timestep
 
     def update_actuators_status(self, new_status):
         """
         Set actuators (pumps and valves) status to a new current state
-        :param new_status: will be used in future with RL
+        :param new_status: dictionary of pumps with next value for their status
         TODO: update with new_status and remove step_count
         """
+        n_updates = 0
+
         # global step_count
         for uid in new_status.keys():
+            # counts how many updates have been done
+            if self.links[uid].status != new_status[uid]:
+                n_updates += 1
             # self.links[uid].status = new_status[uid][step_count % 2]
             self.links[uid].status = new_status[uid]
         # step_count += 1
+
+        return n_updates
 
     def get_network_state(self):
         """
@@ -201,7 +216,7 @@ class WaterDistributionNetwork(epynet.Network):
 
         tanks_ids = [uid for uid in self.tanks.uid]
         junctions_ids = [uid for uid in self.junctions.uid]
-        tanks_iterables = [['tanks'], tanks_ids, ['head', 'pressure']]
+        tanks_iterables = [['tanks'], tanks_ids, ['head', 'pressure', 'level']]
         junct_iterables = [['junctions'], junctions_ids, ['head', 'pressure', 'basedemand', 'actual_demand', 'demand_deficit']]
         tanks_indices = pd.MultiIndex.from_product(iterables=tanks_iterables, names=["node", "id", "properties"])
         junctions_indices = pd.MultiIndex.from_product(iterables=junct_iterables, names=["node", "id", "properties"])

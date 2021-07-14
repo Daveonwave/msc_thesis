@@ -96,6 +96,27 @@ def supply_demand_ratio(wds: network.WaterDistributionNetwork, target_junctions=
     return sum(ratios) / len(ratios)
 
 
+def step_supply_demand_ratio(wds: network.WaterDistributionNetwork, target_junctions=None):
+    """
+
+    :param wds:
+    :param target_junctions:
+    :return:
+    """
+    ratios = []
+
+    if target_junctions:
+        actual_demand = sum([wds.junctions[junc_id].actual_demand.iloc[-1] for junc_id in target_junctions])
+        basedemand = sum([wds.junctions[junc_id].results['basedemand'][-1] for junc_id in target_junctions])
+        ratios.append(actual_demand / basedemand if actual_demand / basedemand <= 1 else float(1))
+    else:
+        actual_demand = wds.junctions.actual_demand.iloc[-1].sum()
+        basedemand = sum([wds.junctions[junc_id].results['basedemand'][-1] for junc_id in wds.junctions.uid])
+        ratios.append(actual_demand / basedemand if actual_demand / basedemand <= 1 else float(1))
+
+    return sum(ratios) / len(ratios)
+
+
 def pressure_violations(wds: network.WaterDistributionNetwork, target_nodes, nodes_band):
     """
     Computes how many pressure violations there have been at the end of the simulation

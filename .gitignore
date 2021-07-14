@@ -158,4 +158,8 @@ $RECYCLE.BIN/
 # demand_generation
 demand_generation/*
 
+# saved model and logs
+*.msh
+*.log
+
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,jupyternotebooks,windows

@@ -163,10 +163,10 @@ demand_generation/*
 *.log
 
 # dqn comparison
-.notebooks/results_full
-.notebooks/results_notime
-.notebooks/results_noday
-.notebooks/results_nojuncpressure
-.notebooks/results_notanklevel
+results_full
+results_notime
+results_noday
+results_nojuncpressure
+results_notanklevel
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,jupyternotebooks,windows

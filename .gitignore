@@ -168,5 +168,6 @@ results_notime
 results_noday
 results_nojuncpressure
 results_notanklevel
+results_step_update
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,jupyternotebooks,windows

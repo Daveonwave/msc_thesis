@@ -6,19 +6,28 @@ matplotlib.use("TkAgg")
 
 
 class InfoLogger:
-    def __init__(self, folder_name, folder_path):
-        self.logger = Logger(log_name=folder_name, results_dir=folder_path, log_console=True)
+    def __init__(self, folder_name=None, folder_path=None):
+        self.logger = None
+        if folder_path and folder_path:
+            self.logger = Logger(log_name=folder_name, results_dir=folder_path, log_console=True)
 
-    def experiment_summary(self):
-        pass
+    def experiment_summary(self, info: str):
+        if self.logger:
+            self.logger.strong_line()
+            self.logger.info(info)
+            self.logger.strong_line()
+        else:
+            print(info)
 
     def fill_replay_memory(self):
-        self.logger.info('Filling replay memory')
-        self.logger.weak_line()
+        if self.logger:
+            self.logger.info('Filling replay memory')
+            self.logger.weak_line()
 
     def print_epoch(self, epoch):
-        self.logger.epoch_info(epoch=epoch)
-        self.logger.weak_line()
+        if self.logger:
+            self.logger.epoch_info(epoch=epoch)
+            self.logger.weak_line()
 
     def get_stats(self, dataset):
         score = compute_metrics(dataset)
@@ -26,20 +35,31 @@ class InfoLogger:
         return score
 
     def training_phase(self):
-        self.logger.info('Learning...')
-        self.logger.weak_line()
+        if self.logger:
+            self.logger.info('Learning...')
+            self.logger.weak_line()
+        else:
+            print('Learning...')
 
     def evaluation_phase(self):
-        self.logger.info('Evaluation..')
-        self.logger.weak_line()
+        if self.logger:
+            self.logger.info('Evaluation..')
+            self.logger.weak_line()
+        else:
+            print('Evaluating...')
 
     def end_phase(self):
-        self.logger.strong_line()
+        if self.logger:
+            self.logger.strong_line()
 
     def results(self, dsr, n_updates):
-        self.logger.info('DSR: ' + str(dsr))
-        self.logger.info('Total updates: ' + str(n_updates))
-        self.logger.weak_line()
+        if self.logger:
+            self.logger.info('DSR: ' + str(dsr))
+            self.logger.info('Total updates: ' + str(n_updates))
+            self.logger.weak_line()
+        else:
+            print('DSR: ' + str(dsr))
+            print('Total updates: ' + str(n_updates))
 
 
 class Plotter:

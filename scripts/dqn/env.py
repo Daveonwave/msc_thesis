@@ -17,10 +17,11 @@ class WaterNetworkEnvironment(Environment):
                  hyd_step=300,
                  pattern_step=3600,
                  pattern_file=None,
+                 seed=None,
                  update_every=None,
                  bounds=None,
                  logger=None,
-                 show_plot=False
+                 show_plot=False,
                  ):
         """
 
@@ -40,23 +41,19 @@ class WaterNetworkEnvironment(Environment):
         self.hyd_step = hyd_step
         self.pattern_step = pattern_step
         self.pattern_file = pattern_file
+        self.seed = seed
 
         self.update_every = update_every
         self.on_eval = False
         self.logger = logger
         self.show_plot = show_plot
+
         if self.show_plot:
             self.train_plot = Plotter('Training Plot')
             self.eval_plot = Plotter('Evaluation Plot')
 
         self.wn = network.WaterDistributionNetwork(town + '.inp')
         self.wn.set_time_params(duration=duration, hydraulic_step=hyd_step, pattern_step=pattern_step)
-
-        if self.pattern_file:
-            # Set pattern file
-            junc_demands = pd.read_csv(self.pattern_file)
-            # TODO: this is anytown case, it changes with ctown
-            self.wn.set_demand_pattern('junc_demand', junc_demands['0'], self.wn.junctions)
 
         self.curr_time = None
         self.timestep = None
@@ -78,7 +75,7 @@ class WaterNetworkEnvironment(Environment):
         observation_space = Box(low=lows, high=highs, shape=(len(self._state),))
 
         # TODO: what is horizon?
-        mdp_info = MDPInfo(observation_space, action_space, gamma=0.99, horizon=10000)
+        mdp_info = MDPInfo(observation_space, action_space, gamma=0.99, horizon=1000000)
         super().__init__(mdp_info)
 
     def reset(self, state=None):
@@ -94,9 +91,13 @@ class WaterNetworkEnvironment(Environment):
             junc_demands = pd.read_csv(self.pattern_file)
 
             if self.on_eval:
-                col = random.choice(junc_demands.columns.values[120:])
+                if self.seed and not (self.seed >= len(junc_demands.columns) or self.seed < 120):
+                    col = junc_demands.columns.values[self.seed]
+                else:
+                    col = random.choice(junc_demands.columns.values[120:])
             else:
                 col = random.choice(junc_demands.columns.values[:120])
+
             self.wn.set_demand_pattern('junc_demand', junc_demands[col], self.wn.junctions)
 
         self.wn.init_simulation()
@@ -140,6 +141,7 @@ class WaterNetworkEnvironment(Environment):
             n_updates = self.wn.update_actuators_status(new_status_dict)
             self.total_updates += n_updates
 
+        # Simulate the next hydraulic step
         self.timestep = self.wn.simulate_step(self.curr_time, get_state=False)
         self.curr_time += self.timestep
 
@@ -148,7 +150,6 @@ class WaterNetworkEnvironment(Environment):
         reward = self.compute_reward(n_updates)
 
         info = None
-        # print(self._state)
 
         if self.timestep == 0:
             self.done = True
@@ -176,10 +177,12 @@ class WaterNetworkEnvironment(Environment):
 
         if reset:
             # Appending initial timestamp and day of the week (monday)
-            state.extend([0, 1])
+            # state.extend([0, 1])
 
             # Appending tanks level and junction pressure of nodes specified in yaml file
             for key in self.state_vars.keys():
+                if key == 'time' or key == 'day':
+                    state.append(self.state_vars[key])
                 if key == 'tanks':
                     state.extend([0 for tank_id in self.state_vars[key]])
                 if key == 'junctions':
@@ -188,18 +191,19 @@ class WaterNetworkEnvironment(Environment):
             # Appending current daily timestamp and day of the week
             seconds_per_day = 3600 * 24
             days_per_week = 7
-            state.append(self.wn.times[-1] % seconds_per_day)
-            state.append(((self.wn.times[-1] // seconds_per_day) % days_per_week) + 1)
 
             # Appending current tanks level and junction pressure of nodes specified in yaml file
             for key in self.state_vars.keys():
+                if key == 'time':
+                    state.append(self.wn.times[-1] % seconds_per_day)
+                if key == 'day':
+                    state.append(((self.wn.times[-1] // seconds_per_day) % days_per_week) + 1)
                 if key == 'tanks':
                     state.extend([self.wn.tanks[tank_id].results['pressure'][-1] for tank_id in self.state_vars[key]])
                 if key == 'junctions':
                     state.extend([self.wn.junctions[junc_id].results['pressure'][-1] for junc_id in self.state_vars[key]])
 
         state = [np.float32(i) for i in state]
-        # print(state)
         return state
 
     def compute_reward(self, n_actuators_updates):
@@ -213,7 +217,8 @@ class WaterNetworkEnvironment(Environment):
             if self.dsr < 0.9:
                 return -100
             else:
-                return 10 ** (1/self.dsr)
+                return 0
+            #    return 10 ** (1/self.dsr)
 
         dsr_ratio = objFunction.step_supply_demand_ratio(self.wn)
         if self.update_every:
@@ -229,4 +234,6 @@ class WaterNetworkEnvironment(Environment):
         """
         return objFunction.supply_demand_ratio(self.wn)
 
+    def get_state(self):
+        return self._state
 

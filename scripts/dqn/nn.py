@@ -14,9 +14,14 @@ class NN10Layers(nn.Module):
         """
         super(NN10Layers, self).__init__()
 
+        # self.count = 0
+
         self.hidden_size = hidden_size
         n_input = input_shape[0]
         n_output = output_shape[0]
+
+        self._collect_qs = False
+        self._q_values = []
 
         self.input = nn.Linear(n_input, hidden_size)
         self.hidden1 = nn.Linear(hidden_size, hidden_size)
@@ -29,14 +34,14 @@ class NN10Layers(nn.Module):
         self.hidden8 = nn.Linear(hidden_size, hidden_size)
         self.output = nn.Linear(hidden_size, n_output)
 
-    def forward(self, x, action=None):
+    def forward(self, input, action=None):
         """
 
         :param x:
         :param action:
         :return:
         """
-        x = F.relu(self.input(x))
+        x = F.relu(self.input(input))
         x = F.relu(self.hidden1(x))
         x = F.relu(self.hidden2(x))
         x = F.relu(self.hidden3(x))
@@ -48,12 +53,33 @@ class NN10Layers(nn.Module):
         # x = F.relu(self.hidden8(x.view(-1, self.hidden_size)))
         q = self.output(x)
 
+        # collects q values
+        if self._collect_qs:
+            self._q_values.extend([list([input.tolist()[0][:2], q.tolist()[0]])])
+
         # action is for backpropagation
         if action is None:
             return q
         else:
             q_acted = torch.squeeze(q.gather(1, action.long()))
             return q_acted
+
+    def collect_qs_enabled(self, bool):
+        """
+        Enables the collection of Q values
+        :param bool:
+        :return:
+        """
+        if bool:
+            self._q_values = []
+        self._collect_qs = bool
+
+    def retrieve_qs(self):
+        """
+        Retrieve the list of collected Q values
+        :return:
+        """
+        return self._q_values
 
 
 class CustomNN(nn.Module):

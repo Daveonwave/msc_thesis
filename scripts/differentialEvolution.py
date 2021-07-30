@@ -300,8 +300,8 @@ if __name__ == '__main__':
         'vars_list': ['78', '79'],
         # 'vars_list': ['PU1', 'PU2'],
         # 'vars_list': ['X_Pump_1', 'X_Pump_2', 'X_Pump_3', 'X_Pump_4', 'X_Pump_5'],
-        'n_pop': 4,
-        'n_generations': 1,
+        'n_pop': 15,
+        'n_generations': 5,
         'CR': 0.7,
         'F': 0.5
     }
@@ -310,15 +310,14 @@ if __name__ == '__main__':
     de = DifferentialEvolution(net, objFunction.supply_demand_ratio, objfunc_params, **DE_params)
 
     pattern_csv = "../demand_patterns/demands_anytown.csv"
-    junc_demands = pd.read_csv(pattern_csv, names=['multipliers'])
+    junc_demands = pd.read_csv(pattern_csv)
 
-    net.set_demand_pattern('junc_demand', junc_demands.values, net.junctions)
+    net.set_demand_pattern('junc_demand', junc_demands['130'], net.junctions)
 
-    len(net.patterns['junc_demand'].values)
-
-    days = 7
-    duration = 24 * 3600        # 1 day
+    n_sim = 1
+    duration = 24 * 3600 * 7    # 1 day
     hyd_step = 600              # 10 min
     update_interval = 3600 * 4  # 4 hours
 
-    de.run(duration, hyd_step, update_interval, n_simulations=days, save_results=False, keep_same_pop=True)
+    de.run(duration, hyd_step, update_interval, n_simulations=n_sim, save_results=True, keep_same_pop=False,
+           info='week_130')

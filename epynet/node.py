@@ -114,4 +114,5 @@ class Tank(Node):
                          'initvolume': epanet2.EN_INITVOLUME, 'diameter': epanet2.EN_TANKDIAM,
                          'minvolume': epanet2.EN_MINVOLUME, 'minlevel': epanet2.EN_MINLEVEL,
                          'maxlevel': epanet2.EN_MAXLEVEL, 'maxvolume': 25, 'tanklevel': epanet2.EN_TANKLEVEL}
-    properties = {'head': epanet2.EN_HEAD, 'pressure': epanet2.EN_PRESSURE, 'volume': 24, 'level': epanet2.EN_TANKLEVEL}
+    properties = {'head': epanet2.EN_HEAD, 'pressure': epanet2.EN_PRESSURE, 'volume': 24, 'level': epanet2.EN_TANKLEVEL,
+                  'overflow': epanet2.EN_CANOVERFLOW}

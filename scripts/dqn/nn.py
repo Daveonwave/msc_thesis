@@ -14,8 +14,6 @@ class NN10Layers(nn.Module):
         """
         super(NN10Layers, self).__init__()
 
-        # self.count = 0
-
         self.hidden_size = hidden_size
         n_input = input_shape[0]
         n_output = output_shape[0]

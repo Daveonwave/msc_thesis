@@ -92,7 +92,9 @@ def supply_demand_ratio(wds: network.WaterDistributionNetwork, target_junctions=
             actual_demand = wds.junctions.actual_demand.loc[time].sum()
             basedemand = sum([wds.junctions[junc_id].results['basedemand'][i] for junc_id in wds.junctions.uid])
             ratios.append(actual_demand/basedemand if actual_demand/basedemand <= 1 else float(1))
-            
+
+    # print("len_ratios: ", len(ratios))
+
     return sum(ratios) / len(ratios)
 
 
@@ -108,13 +110,16 @@ def step_supply_demand_ratio(wds: network.WaterDistributionNetwork, target_junct
     if target_junctions:
         actual_demand = sum([wds.junctions[junc_id].actual_demand.iloc[-1] for junc_id in target_junctions])
         basedemand = sum([wds.junctions[junc_id].results['basedemand'][-1] for junc_id in target_junctions])
-        ratios.append(actual_demand / basedemand if actual_demand / basedemand <= 1 else float(1))
+        #ratios.append(actual_demand / basedemand if actual_demand / basedemand <= 1 else float(1))
     else:
         actual_demand = wds.junctions.actual_demand.iloc[-1].sum()
         basedemand = sum([wds.junctions[junc_id].results['basedemand'][-1] for junc_id in wds.junctions.uid])
-        ratios.append(actual_demand / basedemand if actual_demand / basedemand <= 1 else float(1))
+        #ratios.append(actual_demand / basedemand if actual_demand / basedemand <= 1 else float(1))
 
-    return sum(ratios) / len(ratios)
+    ratio = actual_demand / basedemand if actual_demand / basedemand <= 1 else float(1)
+    # print("len_ratios: ", len(ratios))
+    return ratio
+    #return sum(ratios) / len(ratios)
 
 
 def pressure_violations(wds: network.WaterDistributionNetwork, target_nodes, nodes_band):

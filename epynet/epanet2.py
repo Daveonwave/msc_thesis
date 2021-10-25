@@ -975,6 +975,7 @@ EN_MINLEVEL      = 20
 EN_MAXLEVEL      = 21
 EN_MIXFRACTION   = 22
 EN_TANK_KBULK    = 23
+EN_CANOVERFLOW   = 26
 EN_DEMANDDEFICIT = 27
 
 EN_DIAMETER      = 0      # /* Link parameters */

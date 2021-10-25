@@ -1,8 +1,8 @@
 env:
     town: 'anytown_pd'
     state_vars:
-        'time': 0
         'day': 1
+        'time': 0
         'tanks':
             - '41'
             - '42'
@@ -13,34 +13,39 @@ env:
         - '79'
     # duration: 86400    # 1 day
     duration: 604800    # 1 week
+    #duration: 6048    # for trials
     hyd_step: 600
-    pattern_step: 3600
+    pattern_step: 300
     # pattern_file: null
-    pattern_file: '../../demand_patterns/demands_anytown.csv'
+    patterns:
+        train: '../../demand_patterns/demand_patterns_train_low.csv'
+        test: '../../demand_patterns/demand_patterns_test_low.csv'
     seed: null
     # update_every: 14400     # 4hours
     update_every: null
     bounds:
-        time:
-            min: 0
-            max: 86400
         day:
             min: 1
             max: 7
+        time:
+            min: 0
+            max: 86400
         41_level:
-            min: 0
-            max: 20
+            min: 3.048  #3.429 (5%)
+            max: 10.668 #10,287 (95%)
         42_level:
-            min: 0
-            max: 20
+            min: 3.048
+            max: 10.668
         20_pressure:
             min: 10
             max: 100
 
 agent:
+    load: False
+    load_as: 'saved_models/overflow.msh'
     batch_size: 64
     target_update_frequency: 10
-    initial_replay_memory: 2100
+    initial_replay_memory: 10
     max_replay_size: 10000
 
 nn:
@@ -51,5 +56,5 @@ optimizer:
 
 learning:
     epochs: 5
-    train_episodes: 5
+    train_episodes: 4
     train_frequency: 4

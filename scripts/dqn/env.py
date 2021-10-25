@@ -16,7 +16,7 @@ class WaterNetworkEnvironment(Environment):
                  duration=3600 * 24,
                  hyd_step=300,
                  pattern_step=3600,
-                 pattern_file=None,
+                 pattern_files=None,
                  seed=None,
                  update_every=None,
                  bounds=None,
@@ -31,7 +31,7 @@ class WaterNetworkEnvironment(Environment):
         :param duration:
         :param hyd_step:
         :param pattern_step:
-        :param pattern_file:
+        :param pattern_files:
         """
         self.town = town
         self.state_vars = state_vars
@@ -40,7 +40,8 @@ class WaterNetworkEnvironment(Environment):
         self.duration = duration
         self.hyd_step = hyd_step
         self.pattern_step = pattern_step
-        self.pattern_file = pattern_file
+        self.patterns_train_csv = pattern_files['train']
+        self.patterns_test_csv = pattern_files['test']
         self.seed = seed
 
         self.update_every = update_every
@@ -86,19 +87,23 @@ class WaterNetworkEnvironment(Environment):
         """
         self.wn.reset()
 
-        if self.pattern_file:
-            # Set pattern file
-            junc_demands = pd.read_csv(self.pattern_file)
+        if self.on_eval:
+            if self.patterns_test_csv:
+                junc_demands = pd.read_csv(self.patterns_test_csv)
 
-            if self.on_eval:
-                if self.seed and not (self.seed >= len(junc_demands.columns) or self.seed < 120):
+                if self.seed and not (self.seed >= len(junc_demands.columns)):
                     col = junc_demands.columns.values[self.seed]
                 else:
-                    col = random.choice(junc_demands.columns.values[120:])
-            else:
-                col = random.choice(junc_demands.columns.values[:120])
-
-            self.wn.set_demand_pattern('junc_demand', junc_demands[col], self.wn.junctions)
+                    col = random.choice(junc_demands.columns.values)
+                print("col: ", col)
+                self.wn.set_demand_pattern('junc_demand', junc_demands[col], self.wn.junctions)
+        else:
+            if self.patterns_train_csv:
+                # Set pattern file
+                junc_demands = pd.read_csv(self.patterns_train_csv)
+                col = random.choice(junc_demands.columns.values)
+                self.wn.set_demand_pattern('junc_demand', junc_demands[col], self.wn.junctions)
+                print("col: ", col)
 
         self.wn.init_simulation()
         self.curr_time = 0
@@ -176,10 +181,7 @@ class WaterNetworkEnvironment(Environment):
         state = []
 
         if reset:
-            # Appending initial timestamp and day of the week (monday)
-            # state.extend([0, 1])
-
-            # Appending tanks level and junction pressure of nodes specified in yaml file
+            # Appending time, day, tanks level and junction pressure of nodes specified in yaml file
             for key in self.state_vars.keys():
                 if key == 'time' or key == 'day':
                     state.append(self.state_vars[key])
@@ -192,7 +194,7 @@ class WaterNetworkEnvironment(Environment):
             seconds_per_day = 3600 * 24
             days_per_week = 7
 
-            # Appending current tanks level and junction pressure of nodes specified in yaml file
+            # Appending current time, day, tanks level and junction pressure of nodes specified in yaml file
             for key in self.state_vars.keys():
                 if key == 'time':
                     state.append(self.wn.times[-1] % seconds_per_day)
@@ -205,6 +207,38 @@ class WaterNetworkEnvironment(Environment):
 
         state = [np.float32(i) for i in state]
         return state
+
+    def check_overflow(self):
+        """
+        Check if the we have an overflow problem in the tanks. We have an overflow if after one hour we the tank is
+        still at the maximum level.
+        :return: penalty value
+        """
+        penalty = 50
+        risk_percentage = 0.9
+
+        for tank in self.wn.tanks:
+            if tank.results['pressure'][-1] > tank.maxlevel * risk_percentage:
+                out_bound = tank.results['pressure'][-1] - (tank.maxlevel * risk_percentage)
+                # Normalization of the out_bound pressure
+                multiplier = out_bound / (tank.maxlevel - tank.maxlevel * risk_percentage)
+                return penalty * multiplier
+        return 0
+        #     if len(tank.results['pressure']) > 5:
+        #         last_levels = tank.results['pressure'][-5:-1]
+        #         is_overflow = True
+        #
+        #         for level in last_levels:
+        #             if level != tank.maxlevel:
+        #                 is_overflow = False
+        #                 break
+        #
+        #         if is_overflow:
+        #             print("OVERFLOW!!!")
+        #             return 50
+        #         else:
+        #             return 0
+        # return 0
 
     def compute_reward(self, n_actuators_updates):
         """
@@ -220,11 +254,14 @@ class WaterNetworkEnvironment(Environment):
                 return 0
             #    return 10 ** (1/self.dsr)
 
+        overflow_penalty = self.check_overflow()
+        if not self.on_eval:
+            print("OVERFLOW RISK: ", overflow_penalty)
         dsr_ratio = objFunction.step_supply_demand_ratio(self.wn)
         if self.update_every:
-            return dsr_ratio
+            return dsr_ratio - overflow_penalty
         else:
-            reward = -n_actuators_updates + dsr_ratio
+            reward = -n_actuators_updates + dsr_ratio - overflow_penalty
             return reward
 
     def evaluate(self):

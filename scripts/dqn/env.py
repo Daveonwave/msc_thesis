@@ -40,7 +40,8 @@ class WaterNetworkEnvironment(Environment):
         self.duration = duration
         self.hyd_step = hyd_step
         self.pattern_step = pattern_step
-        self.patterns_train_csv = pattern_files['train']
+        self.patterns_train_full_range_csv = pattern_files['train_full_range']
+        self.patterns_train_low_csv = pattern_files['train_low']
         self.patterns_test_csv = pattern_files['test']
         self.seed = seed
 
@@ -98,9 +99,13 @@ class WaterNetworkEnvironment(Environment):
                 print("col: ", col)
                 self.wn.set_demand_pattern('junc_demand', junc_demands[col], self.wn.junctions)
         else:
-            if self.patterns_train_csv:
-                # Set pattern file
-                junc_demands = pd.read_csv(self.patterns_train_csv)
+            if self.patterns_train_full_range_csv and self.patterns_train_low_csv:
+                # Set pattern file choosing randomly between full range or low demand pattern
+                if random.randint(0, 1):
+                    patterns_file = self.patterns_train_full_range_csv
+                else:
+                    patterns_file = self.patterns_train_low_csv
+                junc_demands = pd.read_csv(patterns_file)
                 col = random.choice(junc_demands.columns.values)
                 self.wn.set_demand_pattern('junc_demand', junc_demands[col], self.wn.junctions)
                 print("col: ", col)

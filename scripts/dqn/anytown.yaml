@@ -18,8 +18,9 @@ env:
     pattern_step: 300
     # pattern_file: null
     patterns:
-        train: '../../demand_patterns/demand_patterns_train_low.csv'
-        test: '../../demand_patterns/demand_patterns_test_low.csv'
+        train_full_range: '../../demand_patterns/demand_patterns_train_full_range.csv'
+        train_low: '../../demand_patterns/demand_patterns_train_low.csv'
+        test: '../../demand_patterns/demand_patterns_test_full_range.csv'
     seed: null
     # update_every: 14400     # 4hours
     update_every: null
@@ -56,5 +57,5 @@ optimizer:
 
 learning:
     epochs: 5
-    train_episodes: 4
+    train_episodes: 10
     train_frequency: 4

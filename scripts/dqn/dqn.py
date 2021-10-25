@@ -180,7 +180,7 @@ if __name__ == '__main__':
             _, qs = dqn.evaluate(get_data=False, collect_qs=False)
             results['train'].append(qs)
 
-        # dqn.agent.save('saved_models/overflow.msh', full_save=True)
+        dqn.agent.save('saved_models/overflow_double_train_set.msh', full_save=True)
 
     else:
         results = {'eval': []}

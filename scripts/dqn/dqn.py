@@ -180,7 +180,7 @@ if __name__ == '__main__':
             _, qs = dqn.evaluate(get_data=False, collect_qs=False)
             results['train'].append(qs)
 
-        dqn.agent.save('saved_models/overflow_double_train_set.msh', full_save=True)
+        #dqn.agent.save('saved_models/overflow_double_train_set.msh', full_save=True)
 
     else:
         results = {'eval': []}
@@ -194,7 +194,7 @@ if __name__ == '__main__':
 
     import pickle
 
-    with open('../../results/DQN/anytown/overflow', 'wb') as fp:
+    with open('../../results/DQN/anytown/95%overflow1_no_final_reward', 'wb') as fp:
         pickle.dump(results, fp)
 
 

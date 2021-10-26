@@ -57,5 +57,5 @@ optimizer:
 
 learning:
     epochs: 5
-    train_episodes: 10
+    train_episodes: 6
     train_frequency: 4

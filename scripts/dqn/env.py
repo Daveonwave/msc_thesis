@@ -165,7 +165,7 @@ class WaterNetworkEnvironment(Environment):
             self.done = True
             self.wn.solved = True
             self.dsr = self.evaluate()
-            reward = self.compute_reward(n_actuators_updates=0)
+            #reward = self.compute_reward(n_actuators_updates=0)
             self.logger.results(self.dsr, self.total_updates)
 
         return self._state, reward, self.done, info
@@ -219,8 +219,8 @@ class WaterNetworkEnvironment(Environment):
         still at the maximum level.
         :return: penalty value
         """
-        penalty = 50
-        risk_percentage = 0.9
+        penalty = 1
+        risk_percentage = 0.95
 
         for tank in self.wn.tanks:
             if tank.results['pressure'][-1] > tank.maxlevel * risk_percentage:
@@ -260,8 +260,8 @@ class WaterNetworkEnvironment(Environment):
             #    return 10 ** (1/self.dsr)
 
         overflow_penalty = self.check_overflow()
-        if not self.on_eval:
-            print("OVERFLOW RISK: ", overflow_penalty)
+        #if not self.on_eval:
+        #    print("OVERFLOW RISK: ", overflow_penalty)
         dsr_ratio = objFunction.step_supply_demand_ratio(self.wn)
         if self.update_every:
             return dsr_ratio - overflow_penalty

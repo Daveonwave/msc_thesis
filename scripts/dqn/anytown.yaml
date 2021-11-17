@@ -1,26 +1,28 @@
 env:
-    town: 'anytown_pd'
+    town: 'anytown_map'
     state_vars:
         'day': 1
         'time': 0
         'tanks':
-            - '41'
-            - '42'
+            - 'T41'
+            - 'T42'
         'junctions':
-            - '20'
+            - 'J20'
+        'demand_SMA': 0
     action_vars:
-        - '78'
-        - '79'
+        - 'P78'
+        - 'P79'
     # duration: 86400    # 1 day
     duration: 604800    # 1 week
     #duration: 6048    # for trials
     hyd_step: 600
-    pattern_step: 300
+    pattern_step: 3600
     # pattern_file: null
     patterns:
+        train: '../../demand_patterns/demand_patterns_train_combined.csv'
         train_full_range: '../../demand_patterns/demand_patterns_train_full_range.csv'
         train_low: '../../demand_patterns/demand_patterns_train_low.csv'
-        test: '../../demand_patterns/demand_patterns_test_full_range.csv'
+        test: '../../demand_patterns/demand_patterns_test_mixed.csv'
     seed: null
     # update_every: 14400     # 4hours
     update_every: null
@@ -38,16 +40,19 @@ env:
             min: 3.048
             max: 10.668
         20_pressure:
-            min: 10
+            min: 0
             max: 100
+        demand_SMA:
+            min: 0
+            max: 1
 
 agent:
     load: False
     load_as: 'saved_models/overflow.msh'
-    batch_size: 64
-    target_update_frequency: 10
-    initial_replay_memory: 10
-    max_replay_size: 10000
+    batch_size: 32
+    target_update_frequency: 50
+    initial_replay_memory: 500
+    max_replay_size: 40000
 
 nn:
     hidden_size: 8
@@ -56,6 +61,6 @@ optimizer:
     lr: .00025
 
 learning:
-    epochs: 5
-    train_episodes: 6
+    epochs: 10
+    train_episodes: 5
     train_frequency: 4

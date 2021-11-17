@@ -40,9 +40,11 @@ class WaterNetworkEnvironment(Environment):
         self.duration = duration
         self.hyd_step = hyd_step
         self.pattern_step = pattern_step
+        self.patterns_train = pattern_files['train']
         self.patterns_train_full_range_csv = pattern_files['train_full_range']
         self.patterns_train_low_csv = pattern_files['train_low']
         self.patterns_test_csv = pattern_files['test']
+        self.demand_moving_average = None
         self.seed = seed
 
         self.update_every = update_every
@@ -67,14 +69,14 @@ class WaterNetworkEnvironment(Environment):
         action_space = Discrete(2 ** len(self.action_vars))
 
         # Current state
-        self._state = self.build_current_state(reset=True)
+        self._state = None
 
         # Bounds for observation space
         lows = np.array([bounds[key]['min'] for key in bounds.keys()])
         highs = np.array([bounds[key]['max'] for key in bounds.keys()])
 
         # Observation space
-        observation_space = Box(low=lows, high=highs, shape=(len(self._state),))
+        observation_space = Box(low=lows, high=highs, shape=(len(bounds),))
 
         # TODO: what is horizon?
         mdp_info = MDPInfo(observation_space, action_space, gamma=0.99, horizon=1000000)
@@ -99,16 +101,14 @@ class WaterNetworkEnvironment(Environment):
                 print("col: ", col)
                 self.wn.set_demand_pattern('junc_demand', junc_demands[col], self.wn.junctions)
         else:
-            if self.patterns_train_full_range_csv and self.patterns_train_low_csv:
+            if self.patterns_train:
                 # Set pattern file choosing randomly between full range or low demand pattern
-                if random.randint(0, 1):
-                    patterns_file = self.patterns_train_full_range_csv
-                else:
-                    patterns_file = self.patterns_train_low_csv
-                junc_demands = pd.read_csv(patterns_file)
+                junc_demands = pd.read_csv(self.patterns_train)
                 col = random.choice(junc_demands.columns.values)
                 self.wn.set_demand_pattern('junc_demand', junc_demands[col], self.wn.junctions)
                 print("col: ", col)
+
+        self.demand_moving_average = junc_demands.rolling(window=6, min_periods=1).mean()
 
         self.wn.init_simulation()
         self.curr_time = 0
@@ -194,10 +194,13 @@ class WaterNetworkEnvironment(Environment):
                     state.extend([0 for tank_id in self.state_vars[key]])
                 if key == 'junctions':
                     state.extend([0 for junc_id in self.state_vars[key]])
+                if key == 'demand_SMA':
+                    state.append(self.demand_moving_average.iloc[0, 0])
         else:
             # Appending current daily timestamp and day of the week
             seconds_per_day = 3600 * 24
             days_per_week = 7
+            current_hour = (self.wn.times[-1] % self.duration) // 3600
 
             # Appending current time, day, tanks level and junction pressure of nodes specified in yaml file
             for key in self.state_vars.keys():
@@ -209,6 +212,10 @@ class WaterNetworkEnvironment(Environment):
                     state.extend([self.wn.tanks[tank_id].results['pressure'][-1] for tank_id in self.state_vars[key]])
                 if key == 'junctions':
                     state.extend([self.wn.junctions[junc_id].results['pressure'][-1] for junc_id in self.state_vars[key]])
+                if key == 'demand_SMA':
+                    state.append(self.demand_moving_average.iloc[current_hour, 0])
+
+        #print(state)
 
         state = [np.float32(i) for i in state]
         return state
@@ -220,7 +227,7 @@ class WaterNetworkEnvironment(Environment):
         :return: penalty value
         """
         penalty = 1
-        risk_percentage = 0.95
+        risk_percentage = 0.9
 
         for tank in self.wn.tanks:
             if tank.results['pressure'][-1] > tank.maxlevel * risk_percentage:
@@ -266,7 +273,7 @@ class WaterNetworkEnvironment(Environment):
         if self.update_every:
             return dsr_ratio - overflow_penalty
         else:
-            reward = -n_actuators_updates + dsr_ratio - overflow_penalty
+            reward = -n_actuators_updates/2 + dsr_ratio - overflow_penalty
             return reward
 
     def evaluate(self):

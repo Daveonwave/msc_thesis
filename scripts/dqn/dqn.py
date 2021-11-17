@@ -185,16 +185,16 @@ if __name__ == '__main__':
     else:
         results = {'eval': []}
 
-    seeds = [1, 2, 3, 4, 5]
+    seeds = [0, 1, 2, 3]
     for seed in seeds:
         dqn.env.seed = seed
         dataset, qs = dqn.evaluate(get_data=True, collect_qs=True)
-        res = {'dsr': dqn.env.dsr, 'dataset': dataset, 'q_values': qs}
+        res = {'dsr': dqn.env.dsr, 'updates': dqn.env.total_updates, 'seed': seed, 'dataset': dataset, 'q_values': qs}
         results['eval'].append(res)
 
     import pickle
 
-    with open('../../results/DQN/anytown/95%overflow1_no_final_reward', 'wb') as fp:
+    with open('../../results/DQN/anytown/moving_average_epynet3', 'wb') as fp:
         pickle.dump(results, fp)
 
 

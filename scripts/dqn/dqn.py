@@ -1,5 +1,6 @@
 import pandas as pd
 import yaml
+import random
 from mushroom_rl.core import Core
 from mushroom_rl.algorithms.value import DQN
 from mushroom_rl.approximators.parametric import TorchApproximator
@@ -44,7 +45,7 @@ class DQNAgent:
         )
 
         # Creating the epsilon greedy policy
-        self.epsilon_train = LinearParameter(value=1., threshold_value=.01, n=100000)
+        self.epsilon_train = LinearParameter(value=1., threshold_value=.01, n=300000)
         self.epsilon_test = Parameter(value=0)
         self.epsilon_random = Parameter(value=1)
         self.pi = EpsGreedy(epsilon=self.epsilon_random)
@@ -104,6 +105,7 @@ class DQNAgent:
         :return:
         """
         self.pi.set_epsilon(self.epsilon_random)
+        #self.core.learn(n_episodes=1, n_steps_per_fit=self.hparams['agent']['initial_replay_memory'])
 
         if self.replay_buffer.size < self.hparams['agent']['initial_replay_memory']:
             # Fill replay memory with random data
@@ -177,8 +179,8 @@ if __name__ == '__main__':
             print(dqn.epsilon_train.get_value())
             logger.print_epoch(epoch)
             dqn.learn()
-            _, qs = dqn.evaluate(get_data=False, collect_qs=False)
-            results['train'].append(qs)
+            #_, qs = dqn.evaluate(get_data=False, collect_qs=False)
+            #results['train'].append(qs)
 
         #dqn.agent.save('saved_models/overflow_double_train_set.msh', full_save=True)
 
@@ -189,13 +191,14 @@ if __name__ == '__main__':
     for seed in seeds:
         dqn.env.seed = seed
         dataset, qs = dqn.evaluate(get_data=True, collect_qs=True)
-        res = {'dsr': dqn.env.dsr, 'updates': dqn.env.total_updates, 'seed': seed, 'dataset': dataset, 'q_values': qs}
+        res = {'dsr': dqn.env.dsr, 'updates': dqn.env.total_updates, 'seed': seed, 'dataset': dataset, 'q_values': qs,
+               'attacks': dqn.env.attacks, 'T41_ground': dqn.env.t41_ground, 'T42_ground': dqn.env.t42_ground}
         results['eval'].append(res)
 
     import pickle
 
-    with open('../../results/DQN/anytown/moving_average_epynet3', 'wb') as fp:
+    with open('../../results/DQN/anytown/uninformed_agent_attacks', 'wb') as fp:
         pickle.dump(results, fp)
 
-
-
+    #dqn.env.wn.create_df_reports()
+    #dqn.env.wn.df_nodes_report.to_csv("../df_report.csv")

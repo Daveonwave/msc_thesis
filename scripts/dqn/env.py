@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import random
+import yaml
 from mushroom_rl.core.environment import Environment, MDPInfo
 from mushroom_rl.utils.spaces import Discrete, Box
 from scripts import network, objFunction
@@ -33,6 +34,9 @@ class WaterNetworkEnvironment(Environment):
         :param pattern_step:
         :param pattern_files:
         """
+        with open("anytown.yaml", 'r') as fin:
+            self.hparams = yaml.safe_load(fin)
+
         self.town = town
         self.state_vars = state_vars
         self.action_vars = action_vars
@@ -65,6 +69,11 @@ class WaterNetworkEnvironment(Environment):
         self.total_updates = 0
         self.dsr = 0
 
+        # FOR ATTACKS
+        self.attacks = None
+        self.t41_ground = None
+        self.t42_ground = None
+
         # Two possible values for each pump: 2 ^ n_pumps
         action_space = Discrete(2 ** len(self.action_vars))
 
@@ -82,6 +91,52 @@ class WaterNetworkEnvironment(Environment):
         mdp_info = MDPInfo(observation_space, action_space, gamma=0.99, horizon=1000000)
         super().__init__(mdp_info)
 
+    def generate_random_attacks_in_train(self):
+        """
+
+        :return:
+        """
+        network_attacks = []
+        # 12 hours of interval with hydraulic step of 600 sec -> 72 iterations
+        attack_interval = self.hparams['attacks_train']['interval']
+        week_duration = 3600 * 24 * 7
+
+        attack_chance = random.uniform(0, 1)
+        if attack_chance > self.hparams['attacks_train']['threshold_attack_presence']:
+            return network_attacks
+        amount = random.randint(1, self.hparams['attacks_train']['max_n_attacks'])
+        print('amount: ', amount)
+
+        for i in range(amount):
+            attack_dict = dict()
+            attack_dict['name'] = 'attack' + str(i)
+            attack_dict['type'] = 'mitm'
+
+            # Randomly choose the interval of the attack
+            lower_bound = (week_duration // amount) * i
+            upper_bound = (week_duration // amount) * i + (week_duration // amount)
+            start_time = random.randint(lower_bound, upper_bound - attack_interval - 1)
+            end_time = start_time + attack_interval
+
+            # Choose tag, thus PLC
+            possible_tags = ['T41', 'T42']
+            possible_plcs = ['PLC2', 'PLC3']
+            coin_flip = random.randint(0, 1)
+            tag = possible_tags[coin_flip]
+            target = possible_plcs[coin_flip]
+
+            # Choose value to set the tag between two groups
+            possible_values = [random.uniform(0.1, 1), random.uniform(9.8, 10.5)]
+            coin_flip = random.randint(0, 1)
+            value = round(possible_values[coin_flip], 1)
+
+            attack_dict['trigger'] = {'type': 'time', 'start': start_time, 'end': end_time}
+            attack_dict['tags'] = [{'tag': tag, 'value': value}]
+            attack_dict['target'] = target
+            network_attacks.append(attack_dict)
+
+        return network_attacks
+
     def reset(self, state=None):
         """
         Called at the beginning of each episode
@@ -94,25 +149,41 @@ class WaterNetworkEnvironment(Environment):
             if self.patterns_test_csv:
                 junc_demands = pd.read_csv(self.patterns_test_csv)
 
-                if self.seed and not (self.seed >= len(junc_demands.columns)):
+                if self.seed is not None and self.seed < len(junc_demands.columns):
                     col = junc_demands.columns.values[self.seed]
                 else:
                     col = random.choice(junc_demands.columns.values)
                 print("col: ", col)
                 self.wn.set_demand_pattern('junc_demand', junc_demands[col], self.wn.junctions)
+
+            # Test attacks
+            self.attacks = self.hparams['attacks_test']
+
         else:
             if self.patterns_train:
                 # Set pattern file choosing randomly between full range or low demand pattern
                 junc_demands = pd.read_csv(self.patterns_train)
                 col = random.choice(junc_demands.columns.values)
-                self.wn.set_demand_pattern('junc_demand', junc_demands[col], self.wn.junctions)
                 print("col: ", col)
+                self.wn.set_demand_pattern('junc_demand', junc_demands[col], self.wn.junctions)
 
-        self.demand_moving_average = junc_demands.rolling(window=6, min_periods=1).mean()
+            # Train attacks
+            #self.attacks = self.generate_random_attacks_in_train()
+            self.attacks = []
+
+        print(self.attacks)
+
+        if 'demand_SMA' in self.state_vars.keys():
+            self.demand_moving_average = junc_demands[col].rolling(window=6, min_periods=1).mean()
+            # self.demand_moving_average = junc_demands[col].ewm(alpha=0.1, adjust=False).mean()
+
+        self.t41_ground = []
+        self.t42_ground = []
 
         self.wn.init_simulation()
         self.curr_time = 0
         self.timestep = 1
+        self.seed = None
         self.wn.solved = False
         self.done = False
         self.total_updates = 0
@@ -155,6 +226,13 @@ class WaterNetworkEnvironment(Environment):
         self.timestep = self.wn.simulate_step(self.curr_time, get_state=False)
         self.curr_time += self.timestep
 
+        while self.curr_time % self.hyd_step != 0 and self.timestep != 0:
+            self.timestep = self.wn.simulate_step(self.curr_time, get_state=False)
+            self.curr_time += self.timestep
+
+        #self.count += 1
+        #print(self.count)
+
         # Retrieve current state and reward from the chosen action
         self._state = self.build_current_state()
         reward = self.compute_reward(n_updates)
@@ -195,7 +273,9 @@ class WaterNetworkEnvironment(Environment):
                 if key == 'junctions':
                     state.extend([0 for junc_id in self.state_vars[key]])
                 if key == 'demand_SMA':
-                    state.append(self.demand_moving_average.iloc[0, 0])
+                    state.append(self.demand_moving_average.iloc[0])
+                if key == 'under_attack':
+                    state.append(self.state_vars[key])
         else:
             # Appending current daily timestamp and day of the week
             seconds_per_day = 3600 * 24
@@ -213,10 +293,25 @@ class WaterNetworkEnvironment(Environment):
                 if key == 'junctions':
                     state.extend([self.wn.junctions[junc_id].results['pressure'][-1] for junc_id in self.state_vars[key]])
                 if key == 'demand_SMA':
-                    state.append(self.demand_moving_average.iloc[current_hour, 0])
+                    state.append(self.demand_moving_average.iloc[current_hour])
+                if key == 'under_attack':
+                    state.append(0)
+
+        self.t41_ground.append(state[2])
+        self.t42_ground.append(state[3])
+
+        for attack in self.attacks:
+            if attack['trigger']['start'] <= self.curr_time < attack['trigger']['end']:
+                for tag in attack['tags']:
+                    if tag['tag'] == 'T41':
+                        state[2] = tag['value']
+                    else:
+                        state[3] = tag['value']
+                state[6] = 1
+                #if self.on_eval:
+                #    print(state)
 
         #print(state)
-
         state = [np.float32(i) for i in state]
         return state
 
